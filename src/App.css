@@ -39,9 +39,11 @@
   margin: 10px;
 }
 .sideMenu{
-  text-align: center;
-  margin-top: 20px;
-  gap: 20px;
+position: absolute;
+width: 600px;
+height: 100vh;
+background-color: whitesmoke;
+z-index: 5;
 }
 .sideBar-buttons{
   align-items: center;
@@ -58,4 +60,22 @@
 .participants-btn{
   padding-right: 30px;
 }
-
+.visible{
+  top: 0px;
+  right: 0px;
+}
+.hidden{
+  top: 0px;
+  right: -500px;
+}
+.nav-button-group{
+  display: flex;
+  flex-direction: row;
+  width:100%;
+}
+.main-nav-button{
+  position: absolute;
+  top: 25px;
+  right: 60px;
+  z-index: 6;
+}
