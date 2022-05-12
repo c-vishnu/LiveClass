@@ -1,0 +1,15 @@
+<svg id="ShareScreen" xmlns="http://www.w3.org/2000/svg" width="80" height="60" viewBox="0 0 80 60">
+  <g id="Rectangle_3" data-name="Rectangle 3" fill="#fff" stroke="red" stroke-width="1">
+    <rect width="80" height="60" rx="20" stroke="none"/>
+    <rect x="0.5" y="0.5" width="79" height="59" rx="19.5" fill="none"/>
+  </g>
+  <g id="Group_4" data-name="Group 4" transform="translate(-521 -964)">
+    <g id="Rectangle_8" data-name="Rectangle 8" transform="translate(540 979)" fill="none" stroke="red" stroke-width="1.75">
+      <rect width="42" height="30" rx="3" stroke="none"/>
+      <rect x="0.875" y="0.875" width="40.25" height="28.25" rx="2.125" fill="none"/>
+    </g>
+    <line id="Line_14" data-name="Line 14" y1="11.941" x2="11.941" transform="translate(552.78 994.223) rotate(-45)" fill="none" stroke="red" stroke-linecap="round" stroke-width="1.75"/>
+    <path id="Path_16" data-name="Path 16" d="M-2.967,0,5.428,0,5.215,8.18" transform="translate(557.385 989.618) rotate(-45)" fill="none" stroke="red" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+  </g>
+  <line id="Line_17" data-name="Line 17" y1="48" x2="68" transform="translate(6.5 6.5)" fill="none" stroke="red" stroke-width="1.75"/>
+</svg>

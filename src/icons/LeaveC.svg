@@ -1,0 +1,19 @@
+<svg id="LeaveC" xmlns="http://www.w3.org/2000/svg" width="80" height="60" viewBox="0 0 80 60">
+  <g id="Rectangle_3" data-name="Rectangle 3" fill="#fff" stroke="red" stroke-width="1">
+    <rect width="80" height="60" rx="20" stroke="none"/>
+    <rect x="0.5" y="0.5" width="79" height="59" rx="19.5" fill="none"/>
+  </g>
+  <g id="Group_1" data-name="Group 1" transform="translate(-663.501 -743.002)">
+    <g id="Rectangle_1" data-name="Rectangle 1" transform="translate(683 753)" fill="none" stroke="red" stroke-width="1.75">
+      <rect width="33" height="28" stroke="none"/>
+      <rect x="0.875" y="0.875" width="31.25" height="26.25" fill="none"/>
+    </g>
+    <g id="Ellipse_1" data-name="Ellipse 1" transform="translate(711 759)" fill="#fff" stroke="red" stroke-width="1.75">
+      <circle cx="4" cy="4" r="4" stroke="none"/>
+      <circle cx="4" cy="4" r="3.125" fill="none"/>
+    </g>
+    <path id="Path_5" data-name="Path 5" d="M710.2,774l-2.4,2.8-10-7.2,4.7-.85,4.3,3.05,3.4-3.8h10s3.925,1.375,3.8,5.264-3.8,5.536-3.8,5.536v11.8s-.075,2.275-1.825,2.4-1.975-2.4-1.975-2.4v-7.8h-3v7.8s.475,2.4-1.6,2.4-1.6-2.4-1.6-2.4Z" fill="#fff" stroke="red" stroke-width="1.75"/>
+    <path id="Path_6" data-name="Path 6" d="M719,771.625V784" transform="translate(1.2 1.087)" fill="none" stroke="red" stroke-width="1.75"/>
+  </g>
+  <line id="Line_18" data-name="Line 18" y1="48" x2="68" transform="translate(6.5 6.5)" fill="none" stroke="red" stroke-width="1.75"/>
+</svg>

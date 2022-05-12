@@ -1,0 +1,22 @@
+<svg id="Participants" xmlns="http://www.w3.org/2000/svg" width="86" height="69" viewBox="0 0 86 69">
+  <g id="Rectangle_10" data-name="Rectangle 10" transform="translate(0 9)" fill="#fff" stroke="#000" stroke-width="1">
+    <rect width="80" height="60" rx="20" stroke="none"/>
+    <rect x="0.5" y="0.5" width="79" height="59" rx="19.5" fill="none"/>
+  </g>
+  <g id="Group_25" data-name="Group 25">
+    <g id="Ellipse_7" data-name="Ellipse 7" transform="translate(22.208 26.766)" fill="none" stroke="#000" stroke-width="1.75">
+      <circle cx="6.797" cy="6.797" r="6.797" stroke="none"/>
+      <circle cx="6.797" cy="6.797" r="5.922" fill="none"/>
+    </g>
+    <g id="Ellipse_8" data-name="Ellipse 8" transform="translate(42.144 24.047)" fill="none" stroke="#000" stroke-width="1.75">
+      <circle cx="6.797" cy="6.797" r="6.797" stroke="none"/>
+      <circle cx="6.797" cy="6.797" r="5.922" fill="none"/>
+    </g>
+    <path id="Path_19" data-name="Path 19" d="M1186,63.968S1186.625,54,1198.5,54s13.129,9.968,13.129,9.968" transform="translate(-1169.23 -10.016)" fill="none" stroke="#000" stroke-width="1.75"/>
+    <path id="Path_20" data-name="Path 20" d="M1193.083,55.958a13.4,13.4,0,0,1,7.46-1.958c12.951.712,14.019,12.282,14.019,12.282" transform="translate(-1151.333 -12.864)" fill="none" stroke="#000" stroke-width="1.75"/>
+  </g>
+  <g id="Group_22" data-name="Group 22" transform="translate(-1355.817 289.095)">
+    <ellipse id="Ellipse_7-2" data-name="Ellipse 7" cx="13" cy="14" rx="13" ry="14" transform="translate(1415.817 -289.095)" fill="red"/>
+    <text id="_52" data-name="52" transform="translate(1420.817 -270.095)" fill="#fff" font-size="14" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">52</tspan></text>
+  </g>
+</svg>

@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="50.765" height="52.577" viewBox="0 0 50.765 52.577">
+  <g id="hand" transform="translate(0.875 2.702)">
+    <line id="Line_1" data-name="Line 1" y1="5.5" transform="translate(25.252 43.5)" fill="#ffe8dc" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <path id="Path_5" data-name="Path 5" d="M48.118,46.865a9.727,9.727,0,0,0,6.451-8.893V13.627A2.639,2.639,0,0,0,51.8,11.136h0a2.639,2.639,0,0,0-2.765,2.492V7.814a2.639,2.639,0,0,0-2.765-2.492h0A2.639,2.639,0,0,0,43.51,7.814V4.492A2.639,2.639,0,0,0,40.745,2h0A2.639,2.639,0,0,0,37.98,4.492V7.814a2.639,2.639,0,0,0-2.765-2.492h0a2.639,2.639,0,0,0-2.765,2.492V21.529h-.026a2.755,2.755,0,0,0-.932-2.062,3.4,3.4,0,0,0-2.281-.856h0A3.066,3.066,0,0,0,26,21.505V36.68a10.012,10.012,0,0,0,3.416,7.432l.434.391a12.14,12.14,0,0,0,3.522,2.2V51" transform="translate(-26 -2)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_2" data-name="Line 2" y2="18" transform="translate(12 6)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_3" data-name="Line 3" y2="14" transform="translate(23 9.703)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_4" data-name="Line 4" y1="17" transform="translate(17.5 6)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <path id="Path_6" data-name="Path 6" d="M44,26v8.487l2.271,2.091a9.853,9.853,0,0,1,3.259,7.244h0" transform="translate(-37.549 -6.309)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <path id="Path_7" data-name="Path 7" d="M33,34.995s5.529-.849,11.98,6.789" transform="translate(-23.156 -7.682)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_5" data-name="Line 5" x1="4.864" y2="2.891" transform="translate(17.74 27.019)" fill="#fff" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <circle id="Ellipse_1" data-name="Ellipse 1" cx="2.5" cy="2.5" r="2.5" transform="translate(44.015 17.572)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <circle id="Ellipse_2" data-name="Ellipse 2" cx="1.5" cy="1.5" r="1.5" transform="translate(34.244 31.271)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_6" data-name="Line 6" x1="2" transform="translate(40.015 9)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_7" data-name="Line 7" y2="2" transform="translate(38.015 5)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_8" data-name="Line 8" y2="2" transform="translate(38.015 10.755)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <line id="Line_9" data-name="Line 9" x1="2" transform="translate(34.261 9)" fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.75"/>
+    <g id="Group_24" data-name="Group 24" transform="translate(-1393.817 286.393)">
+      <ellipse id="Ellipse_7" data-name="Ellipse 7" cx="13.5" cy="14" rx="13.5" ry="14" transform="translate(1415.817 -289.095)" fill="#0d0"/>
+      <text id="_02" data-name="02" transform="translate(1420.817 -270.095)" fill="#fff" font-size="14" font-family="Montserrat-Medium, Montserrat" font-weight="500"><tspan x="0" y="0">02</tspan></text>
+    </g>
+  </g>
+</svg>

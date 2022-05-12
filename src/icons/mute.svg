@@ -1,0 +1,16 @@
+<svg id="Mic" xmlns="http://www.w3.org/2000/svg" width="80" height="60" viewBox="0 0 80 60">
+  <g id="Rectangle_3" data-name="Rectangle 3" fill="#fff" stroke="red" stroke-width="1">
+    <rect width="80" height="60" rx="20" stroke="none"/>
+    <rect x="0.5" y="0.5" width="79" height="59" rx="19.5" fill="none"/>
+  </g>
+  <g id="Group_2" data-name="Group 2" transform="translate(-302 -965)">
+    <g id="Rectangle_4" data-name="Rectangle 4" transform="translate(334 976)" fill="none" stroke="red" stroke-width="1.75">
+      <rect width="15" height="26" rx="7.5" stroke="none"/>
+      <rect x="0.875" y="0.875" width="13.25" height="24.25" rx="6.625" fill="none"/>
+    </g>
+    <path id="Path_15" data-name="Path 15" d="M330.75,991.75s-.8,12.807,10.793,12.807,10.582-12.807,10.582-12.807" transform="translate(0.261 1.109)" fill="none" stroke="red" stroke-linecap="round" stroke-width="1.75"/>
+    <line id="Line_12" data-name="Line 12" y2="7.493" transform="translate(341.704 1006.507)" fill="none" stroke="red" stroke-width="1.75"/>
+    <line id="Line_13" data-name="Line 13" x2="18.197" transform="translate(332.606 1013.465)" fill="none" stroke="red" stroke-linecap="round" stroke-width="1.75"/>
+  </g>
+  <line id="Line_15" data-name="Line 15" y1="48" x2="68" transform="translate(6.5 6.5)" fill="none" stroke="red" stroke-width="1.75"/>
+</svg>
