@@ -28,10 +28,10 @@ const VideoLayout = () =>{
     return(
         <div className="App">
             <Row>
-                <Col span={18} className="video-layout">Col-24</Col>
+                <Col span={24} className="video-layout">Col-24</Col>
             </Row>
             <Row>
-                <Col span={18} className="button-layout">
+                <Col span={24} className="button-layout">
                     <Space size={80}>
                     <Button type="link" icon={mic?<MuteAudio />:<Audio />} onClick={setMicEnable} />
                     <Button type="link" icon={camera?<StopVideo />:<Video />} onClick={setCameraEnable} />

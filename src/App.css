@@ -2,6 +2,8 @@
 
 .App {
   text-align: center;
+  overflow-x: hidden;
+  overflow-y: hidden;
 }
 
 .classDetails{
@@ -13,9 +15,6 @@
   padding-right: 80px;
 }
 .head-grid{
-  display: flex;
-}
-.faculty{
   display: flex;
 }
 .details-grid {
@@ -40,7 +39,7 @@
 }
 .sideMenu{
 position: absolute;
-width: 600px;
+width: 400px;
 height: 100vh;
 background-color: whitesmoke;
 z-index: 5;
@@ -53,7 +52,7 @@ z-index: 5;
   height: 80vh;
 }
 .button-layout{
-  margin-top: 20px;
+  /* margin-top: 10px; */
   display: flex;
   justify-content: center;
 }
