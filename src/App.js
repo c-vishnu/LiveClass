@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Row, Col, Space } from "antd";
+import { Row, Col } from "antd";
 import "./App.css";
 import VideoLayout from "./components/videoLayout";
 import SideBar from "./components/sideBar";
@@ -32,7 +32,7 @@ function App() {
           <SideBar setChild={setChild} />
         </Col>
       </Row>
-      <VideoLayout />
+      <VideoLayout shrinkLayout={child} />
     </div>
   );
 }
