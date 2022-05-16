@@ -1,7 +1,7 @@
 import React from "react";
 import "../App.css";
-import {Menu, Dropdown} from 'antd';
-import { EllipsisOutlined } from '@ant-design/icons';
+import {Menu, Dropdown, Input, Button} from 'antd';
+import { EllipsisOutlined, SendOutlined } from '@ant-design/icons';
 
 function ChatLayout() {
 
@@ -36,6 +36,10 @@ function ChatLayout() {
                         <p>Text Body of chat</p>
                     </p>
                 </p>
+            </div>
+            <div className="chatInput">
+              <Input type="text" placeholder="Type here" />
+              <Button shape="circle" type="primary" size="large" style={{margin:"0px"}} icon={<SendOutlined />}/>
             </div>
         </div>
     )
