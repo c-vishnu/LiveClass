@@ -15,8 +15,8 @@ function RiseHand  () {
                     <div className="toggle-button-rh">
                         <p>Start Audio</p>
                         <Switch size="small" defaultChecked />
-                        <p>Start Video</p>
-                        <Switch size="small" defaultChecked />
+                        <p id="start-video">Start Video</p>
+                        <Switch  size="small" defaultChecked />
                     </div>
                 </p>
 

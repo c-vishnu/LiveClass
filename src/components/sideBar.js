@@ -11,7 +11,7 @@ import SideNavLayout from "./sideNavLayouts";
 const SideBar = (props) => {
 
     const [toggleNav, setToggleNav] = useState(false);
-    const [buttonName, setButtonName] = useState();
+    const [buttonName, setButtonName] = useState('chat');
 
     const toggleClassName = () => {
         setToggleNav(!toggleNav);
@@ -22,7 +22,6 @@ const SideBar = (props) => {
             {props.setChild(toggleNav)}
             <div className="nav-button-group">
                 <button className="main-nav-button" onClick={toggleClassName}>{toggleNav?<FullScreen />:<Chat />}</button>
-                {/* <Button className="main-nav-button" type="link" icon={toggleNav?<FullScreen />:<Chat />} onClick={toggleClassName} /> */}
             </div>
             <div className={`sideMenu ${toggleNav? "visible":"hidden"}`}>
             <button onClick={()=>setButtonName('chat')}><Chat /></button>
