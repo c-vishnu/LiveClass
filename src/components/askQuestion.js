@@ -1,16 +1,36 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
+import {Input, Button} from 'antd';
+import {  SendOutlined } from '@ant-design/icons';
 
 function AskQuestion ()  {
+
+    const [answer, setAnswer] = useState(false);
+
+    const sendAnswer = () => {
+        setAnswer(!answer);
+    }
+
     return(
             <div className="questionBubble-body">
                 <p className="que-bubble">
-                    <p>
+                    <p style={{margin:"0px"}}>
                         <h4>Name</h4>
-                        <p>Question body</p>
+                        <p style={{margin:"0px"}}>Question body</p>
                         <div className="que-bubble-button">
-                        <h4 style={{color:"green"}}>Answer</h4>
-                        <h4 style={{color:"red"}}>Reject</h4>
+                        <button onClick={sendAnswer}><h4 style={{color:"green"}}>Answer</h4></button>
+                        <button><h4 style={{color:"red"}}>Reject</h4></button>
+                        </div>
+                        <div>
+                        {
+                            answer?
+                            <div className="answer-body">
+                                <div className="answer-content">
+                                <Input type='text' />
+                                <Button type="primary" size="large" icon={<SendOutlined />} />
+                            </div>
+                        </div>:null
+                        }
                         </div>
                     </p>
                 </p>

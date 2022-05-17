@@ -4,6 +4,7 @@ import "../App.css";
 function SettingSideBar () {
     return(
         <div className="App">
+            
             <div className="settings-body">
                 <h4>Option 1</h4>
                 <h4>Option 2</h4>

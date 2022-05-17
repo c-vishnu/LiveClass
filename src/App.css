@@ -228,6 +228,24 @@
 .que-bubble-button h4{
   margin-right: 10px;
 }
+.que-bubble-button button{
+  background-color: white;
+  border: none;
+}
+.answer-body{
+  position: absolute;
+  background-color: white;
+  width: 390px ;
+  height: 100px;
+  box-sizing: border-box;
+}
+.answer-content{
+  display: flex;
+  margin: 20px;
+}
+.answer-content input{
+  padding: 0px;
+}
 .handRise-body{
   height: 80vh;
   overflow-x: hidden;
