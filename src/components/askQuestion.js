@@ -24,30 +24,30 @@ function AskQuestion ()  {
     }
 
     return(
-            <div className="questionBubble-body">{questions.map((data) => (
-                <p className="que-bubble">
-                    <p style={{margin:"0px"}}>
-                        <h4>{data.senderId}</h4>
-                        <p style={{margin:"0px"}}>{data.text}</p>
-                        <div className="que-bubble-button">
+        <div className="questionBubble-body">{questions.map((data) => (
+            <p className="que-bubble">
+                <p style={{margin:"0px"}}>
+                    <h4>{data.senderId}</h4>
+                    <p style={{margin:"0px"}}>{data.text}</p>
+                    <div className="que-bubble-button">
                         <button onClick={sendAnswer}><h4 style={{color:"green"}}>Answer</h4></button>
                         <button><h4 style={{color:"red"}}>Reject</h4></button>
-                        </div>
-                    </p>
-                </p>
-           ))}
-                                   <div>
-                        {
-                            answer?
-                            <div className="answer-body">
-                                <div className="answer-content">
+                    </div>
+                    <div>
+                    {
+                        answer?
+                        <div className="answer-body">
+                            <div className="answer-content">
                                 <Input type='text' />
                                 <Button type="primary" size="large" icon={<SendOutlined />} />
                             </div>
                         </div>:null
-                        }
-                        </div>
-            </div>
+                    }
+                    </div>
+                </p>
+            </p>
+        ))}
+        </div>
     )
 }
 

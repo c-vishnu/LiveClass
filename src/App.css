@@ -233,11 +233,10 @@
   border: none;
 }
 .answer-body{
-  /* position: absolute; */
-  background-color: white;
-  width: 390px ;
+  width: 370px;
   height: 100px;
-  box-sizing: border-box;
+  background-color: rgb(255, 255, 255);
+  margin: 5px;
 }
 .answer-content{
   display: flex;
@@ -302,9 +301,8 @@
 .videoLayout{
   width: 370px;
   height: 250px;
-  background-color: black;
+  background-color: rgb(255, 255, 255);
   margin: 5px;
-
 }
 .settings-body{
   margin: 15px;
