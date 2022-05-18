@@ -1,20 +1,26 @@
 import React, {useState, useEffect} from "react";
 import "../App.css";
 import {Menu, Dropdown, Input, Button} from 'antd';
-import { EllipsisOutlined, SendOutlined } from '@ant-design/icons';
+import { EllipsisOutlined, SendOutlined,SmileOutlined} from '@ant-design/icons';
 import axios from "./axios";
+import Picker from 'emoji-picker-react';
 
 function ChatLayout() {
 
   const [messages, setMessage] = useState(["Demo message"]);
   const [Name , setName] = useState(() => "");
+  const [pickerVisible, setPickerVisible] = useState(false);
+
+  const onEmojiClick = (event, emojiObject) => {
+    setName(Name + emojiObject.emoji);
+    setPickerVisible(false);
+};
 
   useEffect(() => {
     setInterval(()=> {
         axios.get("/chats")
         .then((res) =>{
             setMessage(res.data);
-            // dummy.current.scrollIntoView({ behavior: "smooth"});
         });
       }, 10000);
   },[]);
@@ -70,10 +76,22 @@ function ChatLayout() {
                 ))}
             </div>
             <div className="chatInput">
+            {pickerVisible && (
+                        <Picker
+                            pickerStyle={{
+                                position: "absolute",
+                                bottom: "60px",
+                            }}
+                            onEmojiClick={onEmojiClick}
+                        />
+                    )}
+                    <Button shape="circle" size="large" 
+                    style={{margin:"0px 5px 5px 0px"}} icon={<SmileOutlined />}  onClick={() => setPickerVisible(!pickerVisible)} />
               <Input type="text" placeholder="Type here" value={Name} onChange={(event) => {
                 setName(event.target.value)
               }} />
-              <Button shape="circle" type="primary" size="large" style={{margin:"0px"}} onClick={onSendMessage} icon={<SendOutlined />}/>
+              <Button shape="circle" type="primary" size="large" style={{margin:"0px"}} 
+              onClick={onSendMessage} icon={<SendOutlined />}/>
             </div>
         </div>
     )
