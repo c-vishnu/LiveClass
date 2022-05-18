@@ -1,9 +1,35 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import "../App.css";
 import {Menu, Dropdown, Input, Button} from 'antd';
 import { EllipsisOutlined, SendOutlined } from '@ant-design/icons';
+import axios from "./axios";
 
 function ChatLayout() {
+
+  const [messages, setMessage] = useState(["Demo message"]);
+  const [Name , setName] = useState(() => "");
+
+  useEffect(() => {
+    setInterval(()=> {
+        axios.get("/chats")
+        .then((res) =>{
+            setMessage(res.data);
+            // dummy.current.scrollIntoView({ behavior: "smooth"});
+        });
+      }, 10000);
+  },[]);
+
+  const onSendMessage = async (e) => {
+      e.preventDefault();
+      await axios.post("/chats", {
+          text:Name,
+          meetingId: "id",
+          senderId:"0"
+      })
+      .then((res) => {
+          setName("");
+      });
+  };
 
     const menu =(
         <Menu items={[
@@ -16,7 +42,9 @@ function ChatLayout() {
           },
           {
             label: (
+              <div className="chat-option">
               <a>Block <a className="block"></a></a>
+              </div>
             ), 
           },
         ]}/>
@@ -24,22 +52,28 @@ function ChatLayout() {
 
     return (
         <div className="Chat-body">
-            <div className="chatBubble-body">
+            <div className="chatBubble-body">{messages.map((data) =>(
                 <p className="chatBubble">
                     <p>
                         <div className="chat-bubble-button">
-                            <h4>Sender Name</h4>
+                            <h4>
+                              {data.senderId === "0"
+                            ? "(admin)"
+                            :`(${data.senderId})`}</h4>
                             <Dropdown overlay={menu} placement="top" arrow>
                             <EllipsisOutlined />
                             </Dropdown>
                         </div>
-                        <p>Text Body of chat</p>
+                        <p>{data.text}</p>
                     </p>
                 </p>
+                ))}
             </div>
             <div className="chatInput">
-              <Input type="text" placeholder="Type here" />
-              <Button shape="circle" type="primary" size="large" style={{margin:"0px"}} icon={<SendOutlined />}/>
+              <Input type="text" placeholder="Type here" value={Name} onChange={(event) => {
+                setName(event.target.value)
+              }} />
+              <Button shape="circle" type="primary" size="large" style={{margin:"0px"}} onClick={onSendMessage} icon={<SendOutlined />}/>
             </div>
         </div>
     )
