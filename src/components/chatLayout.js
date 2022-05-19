@@ -80,7 +80,7 @@ function ChatLayout() {
                         <Picker
                             pickerStyle={{
                                 position: "absolute",
-                                bottom: "60px",
+                                bottom: "100px",
                             }}
                             onEmojiClick={onEmojiClick}
                         />
