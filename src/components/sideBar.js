@@ -12,9 +12,14 @@ const SideBar = (props) => {
 
     const [toggleNav, setToggleNav] = useState(false);
     const [buttonName, setButtonName] = useState('chat');
+    const [highliter, setHighliter] = useState('null');
 
     const toggleClassName = () => {
         setToggleNav(!toggleNav);
+    }
+
+    const onSelection = () => {
+        setHighliter(!highliter);
     }
 
     return (

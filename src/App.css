@@ -218,7 +218,13 @@
   width: fit-content;
   block-size: fit-content;
   padding: 5px 10px 0px 10px;
-  box-shadow: 1px 1px 2px #888888
+  border-right-style: solid ;
+  border-right-color: rgb(55, 241, 55);
+  /* box-shadow: 1px 1px 2px #888888; */
+}
+
+.que-bubble-selection{
+
 }
 .que-bubble-button{
   width: 100%;
