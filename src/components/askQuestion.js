@@ -17,7 +17,7 @@ function AskQuestion ()  {
                 console.log(res);
                 setQuestions(res.data);
             });
-        }, 10000);
+        }, 1000);
     },[]);
 
     const sendAnswer = () => {
@@ -25,6 +25,7 @@ function AskQuestion ()  {
     }
 
     return(
+   
         <div className="questionBubble-body">
             {questions.map((data) => (
             <p className="que-bubble">

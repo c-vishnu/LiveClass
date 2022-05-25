@@ -314,3 +314,10 @@
   margin: 15px;
   text-align: center;
 }
+.chatInput{
+  width: 5%;
+    outline: none;
+    border: 1px solid whitesmoke;
+    font-size: 19px;
+    margin-left: 10px;
+}

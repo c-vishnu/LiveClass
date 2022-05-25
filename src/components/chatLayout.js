@@ -22,7 +22,7 @@ function ChatLayout() {
         .then((res) =>{
             setMessage(res.data);
         });
-      }, 10000);
+      }, 1000);
   },[]);
 
   const onSendMessage = async (e) => {
