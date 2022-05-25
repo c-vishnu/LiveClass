@@ -169,6 +169,7 @@
   text-align: center;
 }
 .chatInput{
+  width: auto;
   margin: 25px;
   display: flex;
   align-items: center;
@@ -221,10 +222,6 @@
   border-right-style: solid ;
   border-right-color: rgb(55, 241, 55);
   /* box-shadow: 1px 1px 2px #888888; */
-}
-
-.que-bubble-selection{
-
 }
 .que-bubble-button{
   width: 100%;
@@ -314,10 +311,10 @@
   margin: 15px;
   text-align: center;
 }
-.chatInput{
+/* .chatInput{
   width: 5%;
     outline: none;
     border: 1px solid whitesmoke;
     font-size: 19px;
     margin-left: 10px;
-}
+} */
