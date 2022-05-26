@@ -31,8 +31,7 @@ function AskQuestion() {
                                 onClick={() => {
                                     setAnswer(!answer);
                                     setReply(data._id);
-                                }}
-                            >
+                                }}>
                                 <h6 style={{ color: "green" }}>Answer</h6>
                             </button>
                             <button>
@@ -43,12 +42,11 @@ function AskQuestion() {
                             {answer && reply===data._id ?  (
                                 <div className="answer-body">
                                     <div className="answer-content">
-                                        <Input type="text" />
+                                        <Input type="text" placeholder="Type answer"/>
                                         <Button
                                             type="primary"
                                             size="large"
-                                            icon={<SendOutlined />}
-                                        />
+                                            icon={<SendOutlined />}/>
                                     </div>
                                 </div>
                             ) : null}
