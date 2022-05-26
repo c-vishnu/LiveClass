@@ -3,12 +3,13 @@ import "../App.css";
 import { Input, Button } from "antd";
 import axios from "./axios";
 import { SendOutlined } from "@ant-design/icons";
-import { v4 as uuidv4 } from "uuid";
 
 function AskQuestion() {
     const [answer, setAnswer] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [reply, setReply] = useState();
+    const [hidden, setHidden] = useState(true);
+
     useEffect(() => {
         setInterval(() => {
             axios.get("/qanda").then((res) => {
@@ -18,6 +19,10 @@ function AskQuestion() {
         }, 1000);
     }, []);
 
+    const actionButton = () => {
+        setHidden(!hidden)
+    }
+
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
@@ -25,19 +30,20 @@ function AskQuestion() {
                     <p style={{ margin: "0px" }}>
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
-                        <div className="que-bubble-button">
+                        {hidden? <div className="que-bubble-button">
                             <button
                                 key={data._id}
                                 onClick={() => {
                                     setAnswer(!answer);
                                     setReply(data._id);
+                                    actionButton();
                                 }}>
                                 <h6 style={{ color: "green" }}>Answer</h6>
                             </button>
                             <button>
                                 <h6 style={{ color: "red" }}>Reject</h6>
                             </button>
-                        </div>
+                        </div>: null}
                         <div>
                             {answer && reply===data._id ?  (
                                 <div className="answer-body">
