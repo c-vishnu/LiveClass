@@ -33,7 +33,7 @@ function AskQuestion ()  {
                     <h4>{data.senderId}</h4>
                     <p style={{margin:"0px"}}>{data.text}</p>
                     <div className="que-bubble-button">
-                        <button key={uuidv4()} onClick={sendAnswer}><h4 style={{color:"green"}}>Answer</h4></button>
+                        <button key={data._id} onClick={sendAnswer}><h4 style={{color:"green"}}>Answer</h4></button>
                         <button><h4 style={{color:"red"}}>Reject</h4></button>
                     </div>
                     <div>
