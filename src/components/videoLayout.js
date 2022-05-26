@@ -350,7 +350,7 @@ const VideoLayout = (props) => {
                                                 : "Disconnected"}
                                             <br></br>
                                         </span>
-                                        <div
+                                        <input
                                             className="ChatInput"
                                             placeholder="Text Overlay"
                                             type="text"
@@ -369,7 +369,7 @@ const VideoLayout = (props) => {
                                 ) : (
                                     <>
                                         <br></br>
-                                        <div
+                                        <input
                                             className="ChatInput"
                                             placeholder="Mux Stream Key"
                                             type="text"
@@ -395,7 +395,7 @@ const VideoLayout = (props) => {
                                                 : "Disconnected"}
                                             <br></br>
                                         </span>
-                                        <div
+                                        <input
                                             className="ChatInput"
                                             placeholder="Text Overlay"
                                             type="text"
@@ -412,7 +412,7 @@ const VideoLayout = (props) => {
                                 ) : (
                                     <>
                                         <br></br>
-                                        <div
+                                        <input
                                             className="ChatInput"
                                             size="10"
                                             height="10px"
