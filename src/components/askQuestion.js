@@ -23,7 +23,7 @@ function AskQuestion() {
             {questions.map((data) => (
                 <p className="que-bubble">
                     <p style={{ margin: "0px" }}>
-                        <h4>{data.senderId}</h4>
+                        <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
                         <div className="que-bubble-button">
                             <button
@@ -33,10 +33,10 @@ function AskQuestion() {
                                     setReply(data._id);
                                 }}
                             >
-                                <h4 style={{ color: "green" }}>Answer</h4>
+                                <h6 style={{ color: "green" }}>Answer</h6>
                             </button>
                             <button>
-                                <h4 style={{ color: "red" }}>Reject</h4>
+                                <h6 style={{ color: "red" }}>Reject</h6>
                             </button>
                         </div>
                         <div>

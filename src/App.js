@@ -16,14 +16,14 @@ function App() {
           <div className="head-grid">
             <div className="Course-img"></div>
             <div className="details-grid">
-            <h4>Course Title</h4>
+            <h5>Course Title</h5>
             <p>Video Title</p>
             </div>
           </div>
           <div className="head-grid">
             <div className="faculty-img"></div>
             <div className="details-grid">
-            <h4>Faculity Name</h4>
+            <h5>Faculity Name</h5>
             <p>Watch time</p>
             </div>
           </div>

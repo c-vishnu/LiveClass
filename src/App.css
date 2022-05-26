@@ -178,8 +178,7 @@
   padding: 15px;
   margin-right: 5px;
 }
-.warning
-{
+.warning{
   height: 15px;
   width: 15px;
   background-color: yellow;
@@ -221,10 +220,6 @@
   border-right-style: solid ;
   border-right-color: rgb(55, 241, 55);
   /* box-shadow: 1px 1px 2px #888888; */
-}
-
-.que-bubble-selection{
-
 }
 .que-bubble-button{
   width: 100%;
@@ -275,7 +270,6 @@
   padding: 5px 10px 0px 10px;
   box-shadow: 1px 1px 2px #888888;
   overflow-y: visible;
-  
 }
 .rh-bubble-body{
   display: flex
@@ -313,11 +307,4 @@
 .settings-body{
   margin: 15px;
   text-align: center;
-}
-.chatInput{
-  width: 5%;
-    outline: none;
-    border: 1px solid whitesmoke;
-    font-size: 19px;
-    margin-left: 10px;
 }

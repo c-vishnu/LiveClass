@@ -62,10 +62,10 @@ function ChatLayout() {
                 <p className="chatBubble">
                     <p>
                         <div className="chat-bubble-button">
-                            <h4>
+                            <h6>
                               {data.senderId === "0"
-                            ? "(admin)"
-                            :`(${data.senderId})`}</h4>
+                            ? "admin "
+                            :`(${data.senderId})`}</h6>
                             <Dropdown overlay={menu} placement="top" arrow>
                             <EllipsisOutlined />
                             </Dropdown>
