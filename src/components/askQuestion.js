@@ -22,38 +22,38 @@ function AskQuestion() {
         }, 1000);
     }, []);
 
-       const changeColor = (color) => {
+    const changeColor = (color) => {
 
-            if(color === "green"){
-                setColour({
-                    borderRightColor:color
-                })
-            }else if(color === "red"){
-                setColour({
-                    borderRightColor:color
-                })
-            }else{
-                setColour({
-                    borderRightColor:color 
-                })
-            }
+        if (color === "green") {
+            setColour({
+                borderRightColor: color
+            })
+        } else if (color === "red") {
+            setColour({
+                borderRightColor: color
+            })
+        } else {
+            setColour({
+                borderRightColor: color
+            })
         }
+    }
     // const actionButton = () => {
     //     setHidden(!hidden)
-        
+
     // }
 
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
-                <p className="que-bubble" style={{borderRightColor:colour}}>
+                <p className="que-bubble" style={{ borderRightColor: setColour }}>
                     <p style={{ margin: "0px" }}>
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
-                        {hidden? <div className="que-bubble-button">
-                            <button 
+                        {hidden ? <div className="que-bubble-button">
+                            <button
                                 key={data._id}
-                                onClick={(e) => {
+                                onClick={() => {
                                     setAnswer(!answer);
                                     setReply(data._id);
                                     changeColor("green");
@@ -61,29 +61,29 @@ function AskQuestion() {
                                 }}>
                                 <h6 style={{ color: "green" }}>Answer</h6>
                             </button>
-                            <button 
-                            onClick={()=>{
-                                changeColor("red");
+                            <button
+                                onClick={() => {
+                                    changeColor("red");
                                 }}>
                                 <h6 style={{ color: "red" }}>Reject</h6>
                             </button>
-                        </div>: null}
+                        </div> : null}
                         <div>
-                            {answer && reply===data._id ?  (
+                            {answer && reply === data._id ? (
                                 <div className="answer-body">
                                     <div className="answer-content">
-                                        <Input type="text" placeholder="Type answer"/>
+                                        <Input type="text" placeholder="Type answer" />
                                         <Button
                                             type="primary"
                                             size="large"
-                                            icon={<SendOutlined />}/>
+                                            icon={<SendOutlined />} />
                                     </div>
                                 </div>
                             ) : null}
                         </div>
                     </p>
                 </p>
-                
+
             ))}
         </div>
     );
