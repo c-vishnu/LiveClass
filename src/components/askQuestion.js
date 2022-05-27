@@ -9,7 +9,7 @@ function AskQuestion() {
     const [questions, setQuestions] = useState([]);
     const [reply, setReply] = useState();
     const [hidden, setHidden] = useState(true);
-    const [colour, setColour] = useState("white");
+    const [colour, setColour] = useState();
 
 
 
@@ -26,11 +26,11 @@ function AskQuestion() {
 
         if (color === "green") {
             setColour({
-                borderRightColor: color
+                borderRightColor: colour
             })
         } else if (color === "red") {
             setColour({
-                borderRightColor: color
+                borderRightColor: colour
             })
         } else {
             setColour({
