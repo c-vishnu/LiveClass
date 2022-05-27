@@ -22,19 +22,19 @@ function AskQuestion() {
         }, 1000);
     }, []);
 
-       const changeColor = (e) => {
+       const changeColor = (color) => {
 
-            if(e.target.innerHTML === "green"){
+            if(color === "green"){
                 setColour({
-                    borderRightColor: "rgb(55, 241, 55)"
+                    borderRightColor:color
                 })
-            }else if(e.target.innerHTML === "red"){
+            }else if(color === "red"){
                 setColour({
-                    borderRightColor: "red"
+                    borderRightColor:color
                 })
             }else{
                 setColour({
-                    borderRightColor: "white" 
+                    borderRightColor:color 
                 })
             }
         }
@@ -51,22 +51,25 @@ function AskQuestion() {
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
-                <p className="que-bubble" setColour={colour}>
+                <p className="que-bubble" style={{borderRightColor:colour}}>
                     <p style={{ margin: "0px" }}>
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
                         {hidden? <div className="que-bubble-button">
-                            <button className="answer-btn"
+                            <button 
                                 key={data._id}
                                 onClick={(e) => {
                                     setAnswer(!answer);
                                     setReply(data._id);
-                                    changeColor();
+                                    changeColor("green");
                                     // actionButton();
                                 }}>
                                 <h6 style={{ color: "green" }}>Answer</h6>
                             </button>
-                            <button className="reject">
+                            <button 
+                            onClick={()=>{
+                                changeColor("red");
+                                }}>
                                 <h6 style={{ color: "red" }}>Reject</h6>
                             </button>
                         </div>: null}
