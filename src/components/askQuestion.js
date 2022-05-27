@@ -43,11 +43,6 @@ function AskQuestion() {
         
     // }
 
-    // const selected = makeColour(() => ({
-    //     if(className==answer-btn)
-
-    // })
-
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
