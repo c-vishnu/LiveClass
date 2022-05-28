@@ -30,7 +30,7 @@ function AskQuestion() {
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
-                <p className={`que-bubble ${colour ==="green" ? 'answer-action' : colour==="red" ? 'reject-action': }`}>
+                <p className={`que-bubble ${colour ==="green" ? 'answer-action' : colour==="red" ? 'reject-action': "default"}`} >
                     <p style={{ margin: "0px" }}>
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
