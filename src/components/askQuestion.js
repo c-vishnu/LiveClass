@@ -22,10 +22,9 @@ function AskQuestion() {
         }, 1000);
     }, []);
 
-    // const actionButton = () => {
-    //     setHidden(!hidden)
-
-    // }
+    const actionButton = () => {
+        setHidden(!hidden)
+    }
 
     return (
         <div className="questionBubble-body">
@@ -41,13 +40,14 @@ function AskQuestion() {
                                     setAnswer(!answer);
                                     setReply(data._id);
                                     setColour("green");
-                                    // actionButton();
+                                    actionButton();
                                 }}>
                                 <h6 style={{ color: "green" }}>Answer</h6>
                             </button>
                             <button
                                 onClick={() => {
                                     setColour("red");
+                                    actionButton();
                                 }}>
                                 <h6 style={{ color: "red" }}>Reject</h6>
                             </button>
