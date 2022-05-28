@@ -40,14 +40,14 @@ function AskQuestion() {
                                 onClick={() => {
                                     setAnswer(!answer);
                                     setReply(data._id);
-                                    setColour(!colour);
+                                    setColour("green");
                                     // actionButton();
                                 }}>
                                 <h6 style={{ color: "green" }}>Answer</h6>
                             </button>
                             <button
                                 onClick={() => {
-                                    setColour(colour);
+                                    setColour("red");
                                 }}>
                                 <h6 style={{ color: "red" }}>Reject</h6>
                             </button>
