@@ -216,7 +216,7 @@
   width: fit-content;
   block-size: fit-content;
   padding: 5px 10px 0px 10px;
-  border-right-style: solid ;
+  /* border-right-style: solid ; */
   /* border-right-color: rgb(55, 241, 55); */
   /* box-shadow: 1px 1px 2px #888888; */
 }
@@ -231,6 +231,14 @@
 .que-bubble-button button{
   background-color: white;
   border: none;
+}
+.answer-action{
+  border-right-style: solid ;
+  border-right-color: rgb(55, 241, 55);
+}
+.reject-action{
+  border-right-style: solid ;
+  border-right-color: rgb(221, 22, 22);
 }
 .replayAnswer{
 	margin: 5px;

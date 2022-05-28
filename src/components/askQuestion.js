@@ -9,7 +9,7 @@ function AskQuestion() {
     const [questions, setQuestions] = useState([]);
     const [reply, setReply] = useState();
     const [hidden, setHidden] = useState(true);
-    const [colour, setColour] = useState();
+    const [colour, setColour] = useState("");
 
 
 
@@ -22,22 +22,6 @@ function AskQuestion() {
         }, 1000);
     }, []);
 
-    const changeColor = (color) => {
-
-        if (color === "green") {
-            setColour({
-                borderRightColor: colour
-            })
-        } else if (color === "red") {
-            setColour({
-                borderRightColor: colour
-            })
-        } else {
-            setColour({
-                borderRightColor: color
-            })
-        }
-    }
     // const actionButton = () => {
     //     setHidden(!hidden)
 
@@ -46,7 +30,7 @@ function AskQuestion() {
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
-                <p className="que-bubble" style={{ borderRightColor: setColour }}>
+                <p className={`que-bubble ${colour ? 'answer-action' : 'reject-action'}`}>
                     <p style={{ margin: "0px" }}>
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
@@ -56,14 +40,14 @@ function AskQuestion() {
                                 onClick={() => {
                                     setAnswer(!answer);
                                     setReply(data._id);
-                                    changeColor("green");
+                                    setColour(!colour);
                                     // actionButton();
                                 }}>
                                 <h6 style={{ color: "green" }}>Answer</h6>
                             </button>
                             <button
                                 onClick={() => {
-                                    changeColor("red");
+                                    setColour(colour);
                                 }}>
                                 <h6 style={{ color: "red" }}>Reject</h6>
                             </button>
