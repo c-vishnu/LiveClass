@@ -6,12 +6,12 @@ import { SendOutlined } from "@ant-design/icons";
 
 function AskQuestion() {
     const [answer, setAnswer] = useState(false);
+    const [reject, setReject] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [reply, setReply] = useState();
+    const [rejectReply, setRejectReply] = useState();
     const [hidden, setHidden] = useState(true);
     const [colour, setColour] = useState("");
-
-
 
     useEffect(() => {
         setInterval(() => {
@@ -23,51 +23,74 @@ function AskQuestion() {
     }, []);
 
     const actionButton = () => {
-        setHidden(!hidden)
-    }
+        setHidden(!hidden);
+    };
 
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
-                <p className={`que-bubble ${colour ==="green" ? 'answer-action' : colour==="red" ? 'reject-action': "default"}`} >
+                //colour ==="green" ? 'answer-action' : colour==="red" ? 'reject-action': "default"
+                <p
+                    key={data._id}
+                    className={`que-bubble ${
+                        reply === data._id && colour === "green"
+                            ? "answer-action"
+                            : rejectReply === data._id && colour === "red"
+                            ? "reject-action"
+                            : "default"
+                    }`}
+                >
                     <p style={{ margin: "0px" }}>
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
-                        {hidden ? <div className="que-bubble-button">
-                            <button
-                                key={data._id}
-                                onClick={() => {
-                                    setAnswer(!answer);
-                                    setReply(data._id);
-                                    setColour("green");
-                                    actionButton();
-                                }}>
-                                <h6 style={{ color: "green" }}>Answer</h6>
-                            </button>
-                            <button
-                                onClick={() => {
-                                    setColour("red");
-                                    actionButton();
-                                }}>
-                                <h6 style={{ color: "red" }}>Reject</h6>
-                            </button>
-                        </div> : null}
+                        {hidden ? (
+                            <div className="que-bubble-button">
+                                <button
+                                    key={data._id}
+                                    onClick={() => {
+                                        setAnswer(!answer);
+                                        setReply(data._id);
+                                        setColour("green");
+                                        actionButton();
+                                    }}
+                                >
+                                    <h6 style={{ color: "green" }}>Answer</h6>
+                                </button>
+                                <button
+                                    key={data._id}
+                                    onClick={() => {
+                                        setRejectReply(data._id);
+                                        setReject(!reject);
+                                        setColour("red");
+                                        actionButton();
+                                    }}
+                                >
+                                    <h6 style={{ color: "red" }}>Reject</h6>
+                                </button>
+                            </div>
+                        ) : null}
                         <div>
+                            {reject && rejectReply === data._id ? (
+                                <p style={{ color: "red" }}>rejected</p>
+                            ) : null}
                             {answer && reply === data._id ? (
                                 <div className="answer-body">
                                     <div className="answer-content">
-                                        <Input type="text" placeholder="Type answer" />
+                                        <Input
+                                            type="text"
+                                            placeholder="Type answer"
+                                        />
                                         <Button
                                             type="primary"
                                             size="large"
-                                            icon={<SendOutlined />} />
+                                            icon={<SendOutlined />}
+                                        />
                                     </div>
                                 </div>
                             ) : null}
                         </div>
                     </p>
                 </p>
-
             ))}
         </div>
     );
