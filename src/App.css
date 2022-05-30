@@ -79,9 +79,10 @@
   width: calc(100% - 450px); 
 }
 .foot-btn{
-  margin-top: 15px;
-  justify-content: right;
-  margin-left: 300px;
+position: relative;
+width: 100%;
+border-width: 1px 0 0 0;
+padding-top: 10px;
 }
 .foot-btn button{
   background-color: white;

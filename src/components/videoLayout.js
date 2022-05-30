@@ -313,16 +313,14 @@ const VideoLayout = (props) => {
             <Row>
                 <Col span={24}>
                     <div
-                        className={`${
-                            props.shrinkLayout ? "small-video" : "video-layout"
-                        }`}
+                        className={`${props.shrinkLayout ? "small-video" : "video-layout"
+                            }`}
                     >
                         <video
-                            className={`${
-                                props.shrinkLayout
+                            className={`${props.shrinkLayout
                                     ? "small-video"
                                     : "video-layout"
-                            }`}
+                                }`}
                             ref={videoRef}
                             playsInline
                             muted
@@ -334,11 +332,10 @@ const VideoLayout = (props) => {
             <Row>
                 <Col span={24}>
                     <div
-                        className={`${
-                            props.shrinkLayout
+                        className={`${props.shrinkLayout
                                 ? "small-button-layout"
                                 : "button-layout"
-                        }`}
+                            }`}
                     >
                         <div className="foot-btn">
                             {cameraEnabled &&
@@ -437,7 +434,8 @@ const VideoLayout = (props) => {
                             <button onClick={enableCamera}>
                                 {camera ? <StopVideo /> : <Video />}
                             </button>
-                            <button onClick={screenRecord}>
+                            <button
+                                onClick={screenRecord}>
                                 {ShareScreen ? (
                                     <StopScreenShare />
                                 ) : (
@@ -450,9 +448,8 @@ const VideoLayout = (props) => {
                             <button onClick={stopcallStreaming}>
                                 <LeaveClass />
                             </button>
-                        </div>
-                        <div className="participants-btn">
-                            <button>
+                            <button
+                                style={{ position: "absolute", right: "0", paddingRight: "20px" }} >
                                 <Participants />
                             </button>
                         </div>
