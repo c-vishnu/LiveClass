@@ -29,18 +29,16 @@ function AskQuestion() {
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
-                //colour ==="green" ? 'answer-action' : colour==="red" ? 'reject-action': "default"
-                <p
-                    key={data._id}
-                    className={`que-bubble ${
-                        reply === data._id && colour === "green"
+                <>
+                    <div
+                        key={data._id}
+                        className={`que-bubble ${reply === data._id && colour === "green"
                             ? "answer-action"
                             : rejectReply === data._id && colour === "red"
-                            ? "reject-action"
-                            : "default"
-                    }`}
-                >
-                    <p style={{ margin: "0px" }}>
+                                ? "reject-action"
+                                : "default"
+                            }`}
+                    >
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
                         {hidden ? (
@@ -70,27 +68,28 @@ function AskQuestion() {
                             </div>
                         ) : null}
                         <div>
-                            {reject && rejectReply === data._id ? (
-                                <p style={{ color: "red" }}>rejected</p>
-                            ) : null}
-                            {answer && reply === data._id ? (
-                                <div className="answer-body">
-                                    <div className="answer-content">
-                                        <Input
-                                            type="text"
-                                            placeholder="Type answer"
-                                        />
-                                        <Button
-                                            type="primary"
-                                            size="large"
-                                            icon={<SendOutlined />}
-                                        />
-                                    </div>
-                                </div>
-                            ) : null}
+
                         </div>
-                    </p>
-                </p>
+                    </div>
+                    {reject && rejectReply === data._id ? (
+                        <p style={{ color: "red" }}></p>
+                    ) : null}
+                    {answer && reply === data._id ? (
+                        <div className="answer-body">
+                            <div className="answer-content">
+                                <Input
+                                    type="text"
+                                    placeholder="Type answer"
+                                />
+                                <Button
+                                    type="primary"
+                                    size="large"
+                                    icon={<SendOutlined />}
+                                />
+                            </div>
+                        </div>
+                    ) : null}
+                </>
             ))}
         </div>
     );
