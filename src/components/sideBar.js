@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../App.css";
-// import { Button, Space } from 'antd';
 import { ReactComponent as Chat } from '../icons/chat.svg';
 import { ReactComponent as AskDoubt } from '../icons/AskDoubt.svg';
 import { ReactComponent as Hand } from '../icons/hand.svg';
@@ -12,15 +11,11 @@ const SideBar = (props) => {
 
     const [toggleNav, setToggleNav] = useState(false);
     const [buttonName, setButtonName] = useState('chat');
-    // const [highliter, setHighliter] = useState('null');
 
     const toggleClassName = () => {
         setToggleNav(!toggleNav);
     }
 
-    // const onSelection = () => {
-    //     setHighliter(!highliter);
-    // }
 
     return (
         <div className="side-nav-bar">
