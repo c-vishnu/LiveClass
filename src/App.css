@@ -271,6 +271,31 @@ padding-top: 10px;
 .answer-content input{
   padding: 0px;
 }
+.answer-bubble{
+  text-align: left;
+  background-color: rgb(155, 245, 177);
+  border-radius: 10px;
+  width: fit-content;
+  height: fit-content;
+  min-width: 50px;
+  margin: 8px;
+  padding: 5px 10px 5px 10px; 
+  block-size: fit-content;
+}
+.answer-head{
+  display: flex;
+  justify-content: space-between;
+}
+.answer-head a{
+  margin: 16px;
+  text-decoration: none;
+  font-size: small;
+}
+.answer-head p{
+  margin: 16px 0 16px 0;
+  font-size: medium;
+  font-weight: bold;
+}
 .handRise-body{
   height: 80vh;
   overflow-x: hidden;

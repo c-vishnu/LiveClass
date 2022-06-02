@@ -6,6 +6,7 @@ import { SendOutlined } from "@ant-design/icons";
 
 function AskQuestion() {
     const [answer, setAnswer] = useState(false);
+    const [answerbubble, setAnswerBubble] = useState(false);
     const [reject, setReject] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [reply, setReply] = useState();
@@ -84,11 +85,23 @@ function AskQuestion() {
                                 <Button
                                     type="primary"
                                     size="large"
-                                    icon={<SendOutlined />}
-                                />
+                                    onClick={() => {
+                                        setAnswer(!answer);
+                                        setAnswerBubble(!answerbubble);
+                                    }}
+                                ><SendOutlined /></Button>
                             </div>
                         </div>
                     ) : null}
+                    {answerbubble ? <div className="answer-bubble">
+                        <div className="answer-head">
+                            <p>Admin</p>
+                            <a href="#">Copy Answer</a>
+                        </div>
+                        <div>
+                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+                        </div>
+                    </div> : null}
                 </>
             ))}
         </div>

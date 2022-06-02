@@ -91,7 +91,7 @@ function ChatLayout() {
           setName(event.target.value)
         }} />
         <Button shape="circle" type="primary" size="large" style={{ margin: "0px" }}
-          onClick={onSendMessage} icon={<SendOutlined />} />
+          onClick={onSendMessage}><SendOutlined /></Button>
       </div>
     </div>
   )
