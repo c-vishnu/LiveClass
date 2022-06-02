@@ -287,12 +287,12 @@ padding-top: 10px;
   justify-content: space-between;
 }
 .answer-head a{
-  margin: 16px;
+  margin: 10px;
   text-decoration: none;
   font-size: small;
 }
 .answer-head p{
-  margin: 16px 0 16px 0;
+  margin: 10px 0 16px 0;
   font-size: medium;
   font-weight: bold;
 }
