@@ -6,6 +6,7 @@ import { SendOutlined } from "@ant-design/icons";
 
 function AskQuestion() {
     const [answer, setAnswer] = useState(false);
+    const [AnswerData, setAnswerData] = useState(()=>"");
     const [answerbubble, setAnswerBubble] = useState(false);
     const [reject, setReject] = useState(false);
     const [questions, setQuestions] = useState([]);
@@ -22,6 +23,18 @@ function AskQuestion() {
             });
         }, 1000);
     }, []);
+
+    const onSendAnswer = async (e) => {
+        e.preventDefault();
+        await axios.post("/qanda",{
+            text: AnswerData,
+            meetingId: "Id",
+            senderId: "0"
+        })
+        .then((res)=>{
+            console.log(res);
+        });
+    };
 
     const actionButton = () => {
         setHidden(!hidden);
@@ -81,6 +94,10 @@ function AskQuestion() {
                                 <Input
                                     type="text"
                                     placeholder="Type answer"
+                                    value={AnswerData}
+                                    onChange={(event)=>{
+                                        setAnswerData(event.target.value)
+                                    }}
                                 />
                                 <Button
                                     type="primary"
@@ -99,7 +116,7 @@ function AskQuestion() {
                             <a href="#">Copy Answer</a>
                         </div>
                         <div>
-                            <p>It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. </p>
+                            <p>{AnswerData}</p>
                         </div>
                     </div> : null}
                 </>
