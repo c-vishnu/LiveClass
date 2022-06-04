@@ -27,7 +27,7 @@ function AskQuestion() {
     const onSendAnswer = async (e) => {
         e.preventDefault();
         await axios.post("/qanda",{
-            text: AnswerData,
+            answer: AnswerData,
             meetingId: "Id",
             senderId: "0"
         })
@@ -118,7 +118,7 @@ function AskQuestion() {
                             <a href="#">Copy Answer</a>
                         </div>
                         <div>
-                            <p>{AnswerData}</p>
+                            <p>{data.answer}</p>
                         </div>
                     </div> : null}
                 </>
