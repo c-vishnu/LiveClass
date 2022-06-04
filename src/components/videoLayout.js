@@ -18,6 +18,11 @@ const VideoLayout = (props) => {
 
     const setMicEnable = () => {
         setMic(!mic);
+        if (mic) {
+            mute()
+        }else{
+            unmute()
+        }
     };
     const setCameraEnable = () => {
         setCamera(!camera);
@@ -299,6 +304,27 @@ const VideoLayout = (props) => {
 
         mediaRecorderRef.current.start(1000);
     };
+
+    const mute = function() {
+
+        if (inputStreamRef.current.getAudioTracks().length > 0) {
+        
+        inputStreamRef.current.getAudioTracks()[0].enabled = false;
+        
+        }
+        
+        }
+    const unmute = function() {
+            
+            if (inputStreamRef.current.getAudioTracks().length > 0) {
+            
+            inputStreamRef.current.getAudioTracks()[0].enabled = true;
+            
+            }
+            
+            }
+    
+
     useEffect(() => {
         nameRef.current = textOverlay;
     }, [textOverlay]);
@@ -313,14 +339,16 @@ const VideoLayout = (props) => {
             <Row>
                 <Col span={24}>
                     <div
-                        className={`${props.shrinkLayout ? "small-video" : "video-layout"
-                            }`}
+                        className={`${
+                            props.shrinkLayout ? "small-video" : "video-layout"
+                        }`}
                     >
                         <video
-                            className={`${props.shrinkLayout
+                            className={`${
+                                props.shrinkLayout
                                     ? "small-video"
                                     : "video-layout"
-                                }`}
+                            }`}
                             ref={videoRef}
                             playsInline
                             muted
@@ -332,10 +360,11 @@ const VideoLayout = (props) => {
             <Row>
                 <Col span={24}>
                     <div
-                        className={`${props.shrinkLayout
+                        className={`${
+                            props.shrinkLayout
                                 ? "small-button-layout"
                                 : "button-layout"
-                            }`}
+                        }`}
                     >
                         <div className="foot-btn">
                             {cameraEnabled &&
@@ -348,6 +377,7 @@ const VideoLayout = (props) => {
                                             <br></br>
                                         </span>
                                         <input
+                                            hidden
                                             className="ChatInput"
                                             placeholder="Text Overlay"
                                             type="text"
@@ -357,6 +387,7 @@ const VideoLayout = (props) => {
                                             }
                                         />
                                         <button
+                                            hidden
                                             className="btn btn-primary m-2  btn-sm"
                                             onClick={stopStreaming}
                                         >
@@ -370,13 +401,21 @@ const VideoLayout = (props) => {
                                             className="ChatInput"
                                             placeholder="Mux Stream Key"
                                             type="text"
+                                            value={"fsgsdf"}
+                                            hidden
                                             onChange={(e) =>
                                                 setStreamKey(e.target.value)
                                             }
                                         />
                                         <button
-                                            className="btn btn-primary m-2  btn-sm"
-                                            disabled={!streamKey}
+                                            className="btn"
+                                            style={{
+                                                backgroundColor: "limegreen",
+                                                color: "white",
+                                                marginTop: "-3rem",
+                                                marginRight: "5rem",
+                                            }}
+                                            disabled={streamKey}
                                             onClick={startStreaming}
                                         >
                                             Start Streaming
@@ -393,6 +432,7 @@ const VideoLayout = (props) => {
                                             <br></br>
                                         </span>
                                         <input
+                                            hidden
                                             className="ChatInput"
                                             placeholder="Text Overlay"
                                             type="text"
@@ -400,6 +440,7 @@ const VideoLayout = (props) => {
                                             onChange={(e) => e.target.value}
                                         />
                                         <button
+                                            hidden
                                             className="btn btn-primary m-2  btn-sm"
                                             onClick={stopScreenStreaming}
                                         >
@@ -410,6 +451,8 @@ const VideoLayout = (props) => {
                                     <>
                                         <br></br>
                                         <input
+                                            value={"fsljfd"}
+                                            hidden
                                             className="ChatInput"
                                             size="10"
                                             height="10px"
@@ -420,8 +463,14 @@ const VideoLayout = (props) => {
                                             }
                                         />
                                         <button
-                                            className="btn btn-primary m-2  btn-sm"
-                                            disabled={!streamKey}
+                                            className="btn"
+                                            style={{
+                                                backgroundColor: "limegreen",
+                                                color: "white",
+                                                marginTop: "-3rem",
+                                                marginRight: "5rem",
+                                            }}
+                                            disabled={streamKey}
                                             onClick={startScreenStreaming}
                                         >
                                             Start Streaming
@@ -434,8 +483,7 @@ const VideoLayout = (props) => {
                             <button onClick={enableCamera}>
                                 {camera ? <StopVideo /> : <Video />}
                             </button>
-                            <button
-                                onClick={screenRecord}>
+                            <button onClick={screenRecord}>
                                 {ShareScreen ? (
                                     <StopScreenShare />
                                 ) : (
@@ -449,7 +497,12 @@ const VideoLayout = (props) => {
                                 <LeaveClass />
                             </button>
                             <button
-                                style={{ position: "absolute", right: "0", paddingRight: "20px" }} >
+                                style={{
+                                    position: "absolute",
+                                    right: "0",
+                                    paddingRight: "20px",
+                                }}
+                            >
                                 <Participants />
                             </button>
                         </div>
