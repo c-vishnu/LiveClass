@@ -33,6 +33,7 @@ function AskQuestion() {
         })
         .then((res)=>{
             console.log(res);
+            setAnswerData("");
         });
     };
 
@@ -105,6 +106,7 @@ function AskQuestion() {
                                     onClick={() => {
                                         setAnswer(!answer);
                                         setAnswerBubble(!answerbubble);
+                                        onSendAnswer();
                                     }}
                                 ><SendOutlined /></Button>
                             </div>
