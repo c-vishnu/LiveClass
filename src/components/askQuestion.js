@@ -14,25 +14,22 @@ function AskQuestion() {
     const [rejectReply, setRejectReply] = useState();
     const [hidden, setHidden] = useState(true);
     const [colour, setColour] = useState("");
-
+    const [qandaId, setQandaId] = useState(()=>"");
     useEffect(() => {
         setInterval(() => {
             axios.get("/qanda").then((res) => {
-                console.log(res);
                 setQuestions(res.data);
             });
         }, 1000);
     }, []);
 
     const onSendAnswer = async (e) => {
-        e.preventDefault();
-        await axios.patch("/qanda",{
+        console.log("qandaId", qandaId);
+        await axios.patch(`/qanda/${qandaId}`,{
             answer: AnswerData,
-            meetingId: "Id",
-            senderId: "0"
+       
         })
         .then((res)=>{
-            console.log(res);
             setAnswerData("");
         });
     };
@@ -63,6 +60,7 @@ function AskQuestion() {
                                     onClick={() => {
                                         setAnswer(!answer);
                                         setReply(data._id);
+                                        setQandaId(data._id);
                                         setColour("green");
                                         actionButton();
                                     }}
@@ -101,7 +99,7 @@ function AskQuestion() {
                                     }}
                                 />
                                 <Button
-                                    type="primary"
+                                    type="submit"
                                     size="large"
                                     onClick={() => {
                                         setAnswer(!answer);
@@ -112,7 +110,7 @@ function AskQuestion() {
                             </div>
                         </div>
                     ) : null}
-                    {answerbubble ? <div className="answer-bubble">
+                    {data.answer ? <div className="answer-bubble">
                         <div className="answer-head">
                             <p>Admin</p>
                             <a href="#">Copy Answer</a>
