@@ -26,7 +26,7 @@ function AskQuestion() {
 
     const onSendAnswer = async (e) => {
         e.preventDefault();
-        await axios.post("/qanda",{
+        await axios.patch("/qanda",{
             answer: AnswerData,
             meetingId: "Id",
             senderId: "0"
