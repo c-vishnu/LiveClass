@@ -31,7 +31,11 @@ function AskQuestion() {
         })
         .then((res)=>{
             setAnswerData("");
-        });
+            // setColour("green");
+        })
+        .then((res)=>{
+            setColour("green");
+        })
     };
 
     const actionButton = () => {
