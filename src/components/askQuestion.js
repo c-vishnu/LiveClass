@@ -26,22 +26,20 @@ function AskQuestion() {
     const onSendAnswer = async (e) => {
         console.log("qandaId", qandaId);
         await axios.patch(`/qanda/${qandaId}`,{
-            answer: AnswerData,
-       
+            answer: AnswerData,       
         })
         .then((res)=>{
             setAnswerData("");
             // setColour("green");
         })
         .then((res)=>{
-            setColour("green");
+            setColour("green"); 
         })
     };
 
     const actionButton = () => {
-        setHidden(!hidden);
-    };
-
+            setHidden(!hidden);
+    }; 
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
