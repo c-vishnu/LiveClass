@@ -12,7 +12,7 @@ function AskQuestion() {
     const [questions, setQuestions] = useState([]);
     const [reply, setReply] = useState();
     const [rejectReply, setRejectReply] = useState();
-    const [hidden, setHidden] = useState(true);
+    const [hiddenQuestions, setHiddenQuestions] = useState([]);
     const [colour, setColour] = useState("");
     const [qandaId, setQandaId] = useState(()=>"");
     useEffect(() => {
@@ -26,20 +26,29 @@ function AskQuestion() {
     const onSendAnswer = async (e) => {
         console.log("qandaId", qandaId);
         await axios.patch(`/qanda/${qandaId}`,{
-            answer: AnswerData,       
+            answer: AnswerData,
+       
         })
         .then((res)=>{
             setAnswerData("");
             // setColour("green");
         })
         .then((res)=>{
-            setColour("green"); 
+            setColour("green");
         })
     };
 
-    const actionButton = () => {
-            setHidden(!hidden);
-    }; 
+    const hideButton = (id) => {
+        setHiddenQuestions([...hiddenQuestions, id]);
+    };
+
+    // const unHideButton = (id) => {
+    //     const index = hiddenQuestions.indexOf(id);
+    //     if(index !==-1) {
+    //         hiddenQuestions.splice(index, 1);
+    //     }
+    // }
+
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
@@ -55,7 +64,7 @@ function AskQuestion() {
                     >
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
-                        {hidden ? (
+                        {!hiddenQuestions.includes(data._id) ? (
                             <div className="que-bubble-button">
                                 <button
                                     key={data._id}
@@ -64,7 +73,7 @@ function AskQuestion() {
                                         setReply(data._id);
                                         setQandaId(data._id);
                                         setColour("green");
-                                        actionButton();
+                                        hideButton(data._id);
                                     }}
                                 >
                                     <h6 style={{ color: "green" }}>Answer</h6>
@@ -75,7 +84,7 @@ function AskQuestion() {
                                         setRejectReply(data._id);
                                         setReject(!reject);
                                         setColour("red");
-                                        actionButton();
+                                        hideButton(data._id);
                                     }}
                                 >
                                     <h6 style={{ color: "red" }}>Reject</h6>
@@ -106,6 +115,7 @@ function AskQuestion() {
                                     onClick={() => {
                                         setAnswer(!answer);
                                         setAnswerBubble(!answerbubble);
+                                        // unHideButton(data._id);
                                         onSendAnswer();
                                     }}
                                 ><SendOutlined /></Button>
