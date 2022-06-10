@@ -8,10 +8,9 @@ function AskQuestion() {
     const [answer, setAnswer] = useState(false);
     const [AnswerData, setAnswerData] = useState(()=>"");
     const [answerbubble, setAnswerBubble] = useState(false);
-    const [reject, setReject] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [reply, setReply] = useState();
-    const [rejectReply, setRejectReply] = useState();
+    const [rejectReplies, setRejectReplies] = useState([]);
     const [hiddenQuestions, setHiddenQuestions] = useState([]);
     const [colour, setColour] = useState("");
     const [qandaId, setQandaId] = useState(()=>"");
@@ -42,13 +41,6 @@ function AskQuestion() {
         setHiddenQuestions([...hiddenQuestions, id]);
     };
 
-    // const unHideButton = (id) => {
-    //     const index = hiddenQuestions.indexOf(id);
-    //     if(index !==-1) {
-    //         hiddenQuestions.splice(index, 1);
-    //     }
-    // }
-
     return (
         <div className="questionBubble-body">
             {questions.map((data) => (
@@ -57,7 +49,7 @@ function AskQuestion() {
                         key={data._id}
                         className={`que-bubble ${reply === data._id && colour === "green"
                             ? "answer-action"
-                            : rejectReply === data._id && colour === "red"
+                            : rejectReplies.includes(data._id) && colour === "red"
                                 ? "reject-action"
                                 : "default"
                             }`}
@@ -81,8 +73,7 @@ function AskQuestion() {
                                 <button
                                     key={data._id}
                                     onClick={() => {
-                                        setRejectReply(data._id);
-                                        setReject(!reject);
+                                        setRejectReplies([...rejectReplies, data._id]);
                                         setColour("red");
                                         hideButton(data._id);
                                     }}
@@ -95,7 +86,7 @@ function AskQuestion() {
 
                         </div>
                     </div>
-                    {reject && rejectReply === data._id ? (
+                    {rejectReplies.includes(data._id) ? (
                         <p style={{ color: "red" }}></p>
                     ) : null}
                     {answer && reply === data._id ? (
@@ -115,7 +106,6 @@ function AskQuestion() {
                                     onClick={() => {
                                         setAnswer(!answer);
                                         setAnswerBubble(!answerbubble);
-                                        // unHideButton(data._id);
                                         onSendAnswer();
                                     }}
                                 ><SendOutlined /></Button>
