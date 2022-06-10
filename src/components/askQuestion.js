@@ -10,6 +10,7 @@ function AskQuestion() {
     const [answerbubble, setAnswerBubble] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [reply, setReply] = useState();
+    const [repliedQuestions, setRepliedQuestions] = useState([]);
     const [rejectReplies, setRejectReplies] = useState([]);
     const [hiddenQuestions, setHiddenQuestions] = useState([]);
     const [colour, setColour] = useState("");
@@ -47,7 +48,7 @@ function AskQuestion() {
                 <>
                     <div
                         key={data._id}
-                        className={`que-bubble ${reply === data._id && colour === "green"
+                        className={`que-bubble ${repliedQuestions.includes(data._id) && colour === "green"
                             ? "answer-action"
                             : rejectReplies.includes(data._id) && colour === "red"
                                 ? "reject-action"
@@ -63,6 +64,7 @@ function AskQuestion() {
                                     onClick={() => {
                                         setAnswer(!answer);
                                         setReply(data._id);
+                                        setRepliedQuestions([...repliedQuestions, data._id]);
                                         setQandaId(data._id);
                                         setColour("green");
                                         hideButton(data._id);
