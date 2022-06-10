@@ -117,7 +117,7 @@ function AskQuestion() {
                     {data.answer ? <div className="answer-bubble">
                         <div className="answer-head">
                             <p>Admin</p>
-                            <a href="#">Copy Answer</a>
+                            <a href="/#">Copy Answer</a>
                         </div>
                         <div>
                             <p>{data.answer}</p>
