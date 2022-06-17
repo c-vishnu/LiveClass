@@ -15,7 +15,7 @@ function AskQuestion() {
     const [hiddenQuestions, setHiddenQuestions] = useState([]);
     const [colour, setColour] = useState("");
     const [qandaId, setQandaId] = useState(()=>"");
-    const [reject, setReject] = useState();
+    const [reject, setReject] = useState(false);
     const [hidden, sethidden] = useState(true);
 
     useEffect(() => {
@@ -45,7 +45,7 @@ function AskQuestion() {
           isrejected: reject,
         })
         .then((res)=> {
-          setReject(true);
+          setReject(!reject);
           setColour("red");
         })
         .catch((error)=>{
@@ -69,7 +69,7 @@ function AskQuestion() {
                     }`}>
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
-                        {!data.answer ? (
+                        {!data.answer && !data.isrejected === true ? (
                             <div className="que-bubble-button">
                                 <button
                                     onClick={() => {
