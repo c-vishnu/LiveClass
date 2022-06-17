@@ -43,10 +43,10 @@
   background-color: whitesmoke;
   z-index: 5;
   box-sizing: border-box;
-  box-shadow: 1px 1px 2px #888888
+  box-shadow: 2px 1px 1px #888888
 }
 .sideMenu button{
-  background-color: whitesmoke;
+  background-color: transparent;
   border: none;
   margin-left: 5px;
   margin-top: 15px;
@@ -85,7 +85,7 @@ border-width: 1px 0 0 0;
 padding-top: 10px;
 }
 .foot-btn button{
-  background-color: white;
+  background-color: transparent;
   border: none;
 }
 .participants-btn {
@@ -95,7 +95,7 @@ padding-top: 10px;
 }
 .participants-btn button{
   margin-top: 0px;
-  background-color: white;
+  background-color: transparent;
   border: none;
 }
 .visible{
@@ -119,9 +119,15 @@ padding-top: 10px;
   z-index: 6;
 }
 .nav-button-group button{
-  background-color: whitesmoke;
-  border: none;
+  /* background-color: transparent;
+  border: none; */
   margin-top: 15px;
+  background-color: Transparent;
+  background-repeat:no-repeat;
+  border: none;
+  cursor:pointer;
+  overflow: hidden;
+  outline:none;
 }
 .chat-body{
   margin: 50px 10px 50px 10px;

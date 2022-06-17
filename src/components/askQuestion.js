@@ -15,6 +15,9 @@ function AskQuestion() {
     const [hiddenQuestions, setHiddenQuestions] = useState([]);
     const [colour, setColour] = useState("");
     const [qandaId, setQandaId] = useState(()=>"");
+    const [reject, setReject] = useState();
+    const [hidden, sethidden] = useState(true);
+
     useEffect(() => {
         setInterval(() => {
             axios.get("/qanda").then((res) => {
@@ -24,19 +27,31 @@ function AskQuestion() {
     }, []);
 
     const onSendAnswer = async (e) => {
-        console.log("qandaId", qandaId);
+        // console.log("qandaId", qandaId);
         await axios.patch(`/qanda/${qandaId}`,{
             answer: AnswerData,
-       
         })
         .then((res)=>{
             setAnswerData("");
-            // setColour("green");
-        })
-        .then((res)=>{
             setColour("green");
         })
+        .catch((error)=>{
+            console.log(error);;
+        })
     };
+
+    const onReject = async (e) => {
+        await axios.patch(`/qanda/${qandaId}`,{
+          isrejected: reject,
+        })
+        .then((res)=> {
+          setReject(true);
+          setColour("red");
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+      }
 
     const hideButton = (id) => {
         setHiddenQuestions([...hiddenQuestions, id]);
@@ -48,19 +63,15 @@ function AskQuestion() {
                 <>
                     <div
                         key={data._id}
-                        className={`que-bubble ${repliedQuestions.includes(data._id) && colour === "green"
-                            ? "answer-action"
-                            : rejectReplies.includes(data._id) && colour === "red"
-                                ? "reject-action"
-                                : "default"
-                            }`}
-                    >
+                        className={`que-bubble ${data.answer ? "answer-action"
+                            : data.isrejected === true ? "reject-action"
+                            : "default"
+                    }`}>
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
-                        {!hiddenQuestions.includes(data._id) ? (
+                        {!data.answer ? (
                             <div className="que-bubble-button">
                                 <button
-                                    key={data._id}
                                     onClick={() => {
                                         setAnswer(!answer);
                                         setReply(data._id);
@@ -68,19 +79,22 @@ function AskQuestion() {
                                         setQandaId(data._id);
                                         setColour("green");
                                         hideButton(data._id);
+                                        sethidden(!hidden);
                                     }}
                                 >
-                                    <h6 style={{ color: "green" }}>Answer</h6>
+                                    <p style={{ color: "green",
+                                    fontWeight:"bold" }}>Answer</p>
                                 </button>
                                 <button
-                                    key={data._id}
                                     onClick={() => {
                                         setRejectReplies([...rejectReplies, data._id]);
                                         setColour("red");
                                         hideButton(data._id);
+                                        onReject();
                                     }}
                                 >
-                                    <h6 style={{ color: "red" }}>Reject</h6>
+                                    <p style={{ color: "red",
+                                    fontWeight:"bold" }}>Reject</p>
                                 </button>
                             </div>
                         ) : null}

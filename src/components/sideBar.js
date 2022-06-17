@@ -21,7 +21,7 @@ const SideBar = (props) => {
         <div className="side-nav-bar">
             {props.setChild(toggleNav)}
             <div className="nav-button-group">
-                <button className="main-nav-button" style={{backgroundColor:"white"}} onClick={toggleClassName}>{toggleNav?<FullScreen />:<Chat />}</button>
+                <button className="main-nav-button" style={{backgroundColor:"Transparent"}} onClick={toggleClassName}>{toggleNav?<FullScreen />:<Chat />}</button>
             </div>
             <div className={`sideMenu ${toggleNav? "visible":"hidden"}`}>
             <button onClick={()=>setButtonName('chat')}><Chat /></button>
