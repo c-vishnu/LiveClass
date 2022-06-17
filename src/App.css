@@ -48,7 +48,7 @@
 .sideMenu button{
   background-color: transparent;
   border: none;
-  margin-left: 5px;
+  margin-left: 15px;
   margin-top: 15px;
 }
 .side-layout{
@@ -113,12 +113,13 @@
   flex-direction: row;
   width:100%;
   margin-top: 10px;
+  height: 10vh;
 } 
 .main-nav-button{
   position: absolute;
   top: 5px;
-  right:30px;
-  z-index: 6;
+  right:15px;
+  z-index: 5;
 }
 .nav-button-group button{
   /* background-color: transparent;
@@ -203,7 +204,7 @@
   margin: 5px;
 }
 .questionBubble-body{
-  height: 80vh;
+  height: 90vh;
   overflow-x: hidden;
   overflow-y: auto;
   margin-left:20px;
