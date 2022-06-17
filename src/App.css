@@ -43,7 +43,7 @@
   background-color: whitesmoke;
   z-index: 5;
   box-sizing: border-box;
-  box-shadow: 2px 1px 1px #888888
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 .sideMenu button{
   background-color: transparent;
@@ -157,7 +157,7 @@ padding-top: 10px;
   width: fit-content;
   block-size: fit-content;
   padding: 5px 10px 5px 10px;
-  box-shadow: 1px 1px 2px #888888;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .chatBubble>p{
   width: 100%;
@@ -221,6 +221,7 @@ padding-top: 10px;
   padding: 5px 10px 5px 10px;
   border-right-style: solid ;
   border-right-color: white;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .que-bubble-button{
   width: 100%;
@@ -281,7 +282,7 @@ padding-top: 10px;
 }
 .answer-bubble{
   text-align: left;
-  background-color: rgb(155, 245, 177);
+  background-color: rgb(197, 236, 207);
   border-radius: 10px;
   width: fit-content;
   height: fit-content;
@@ -289,6 +290,7 @@ padding-top: 10px;
   margin: 8px;
   padding: 5px 10px 5px 10px; 
   block-size: fit-content;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 .answer-head{
   display: flex;
@@ -326,7 +328,7 @@ padding-top: 10px;
   min-width: 80px;
   block-size: fit-content;
   padding: 5px 10px 0px 10px;
-  box-shadow: 1px 1px 2px #888888;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   overflow-y: visible;
 }
 .rh-bubble-body{
