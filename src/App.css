@@ -79,14 +79,16 @@
   width: calc(100% - 450px); 
 }
 .foot-btn{
-position: relative;
-width: 100%;
-border-width: 1px 0 0 0;
-padding-top: 10px;
+  position: relative;
+  width: 100%;
+  border-width: 1px 0 0 0;
+  padding-top: 10px;
+  margin: 10px;
 }
 .foot-btn button{
   background-color: transparent;
   border: none;
+  margin-right: 15px ;
 }
 .participants-btn {
   display: flex;
