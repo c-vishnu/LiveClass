@@ -237,10 +237,12 @@ padding-top: 10px;
 .answer-action{
   border-right-style: solid ;
   border-right-color: rgb(55, 241, 55);
+  border-right-width: 7px;
 }
 .reject-action{
   border-right-style: solid ;
   border-right-color: rgb(221, 22, 22);
+  border-right-width: 7px;
 }
 .replayAnswer{
 	margin: 5px;
