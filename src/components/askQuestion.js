@@ -80,8 +80,7 @@ function AskQuestion() {
                                         setColour("green");
                                         hideButton(data._id);
                                         sethidden(!hidden);
-                                    }}
-                                >
+                                    }}>
                                     <p style={{ color: "green",
                                     fontWeight:"bold" }}>Answer</p>
                                 </button>
@@ -91,8 +90,7 @@ function AskQuestion() {
                                         setColour("red");
                                         hideButton(data._id);
                                         onReject();
-                                    }}
-                                >
+                                }}>
                                     <p style={{ color: "red",
                                     fontWeight:"bold" }}>Reject</p>
                                 </button>
