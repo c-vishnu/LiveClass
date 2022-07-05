@@ -22,9 +22,11 @@ const VideoLayout = (props) => {
     const onClickOpen = () =>{
         if(ShareScreen && screenEnabled === true) {
             setEndpopup(!endpopup);
+
         } else {
             screenRecord();
             setPopup(!popup);
+            enableCamera(!camera);
         }
     }
 
@@ -44,6 +46,16 @@ const VideoLayout = (props) => {
             unmute()
         }
     };
+
+    const onClickCamera = () =>{
+        if (setCameraEnabled === true) {
+            stopScreenStreaming()
+        } else {
+            enableCamera()
+            enableCamera(!camera
+                );
+        }
+    }
     const setCameraEnable = () => {
         setCamera(!camera);
     };
@@ -76,6 +88,7 @@ const VideoLayout = (props) => {
     const requestAnimationRef = useRef();
     const nameRef = useRef();
 
+    //disable camera
     const stopcallStreaming = async () => {
         const stream = inputStreamRef.current;
         const video = videoRef.current;
@@ -229,6 +242,7 @@ const VideoLayout = (props) => {
         mediaRecorderRef.current.start(1000);
     };
 
+    //enable camera
     const enableCamera = async () => {
         inputStreamRef.current = await navigator.mediaDevices.getUserMedia(
             CAMERA_CONSTRAINTS
@@ -561,7 +575,7 @@ const VideoLayout = (props) => {
                             <button onClick={setMicEnable}>
                                 {mic ? <MuteAudio /> : <Audio />}
                             </button>
-                            <button onClick={enableCamera}>
+                            <button onClick={onClickCamera}>
                                 {camera ? <StopVideo /> : <Video />}
                             </button>
                             <button onClick={()=>{onClickOpen();}}>
