@@ -17,16 +17,6 @@ const VideoLayout = (props) => {
     const [camera, setCamera] = useState(false);
     const [ShareScreen, setShareScreen] = useState(false);
 
-
-
-    const CancelClick = () => {
-        setPopup(false);
-    }
-
-    const closeEndpopup =() =>{
-        setEndpopup(false)
-    }
-
     const setMicEnable = () => {
         setMic(!mic);
         if (mic) {
