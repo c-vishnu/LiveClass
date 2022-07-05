@@ -16,19 +16,8 @@ const VideoLayout = (props) => {
     const [mic, setMic] = useState(false);
     const [camera, setCamera] = useState(false);
     const [ShareScreen, setShareScreen] = useState(false);
-    const [popup, setPopup] = useState(false);
-    const [endpopup, setEndpopup] = useState(false);
 
-    const onClickOpen = () =>{
-        if(ShareScreen && screenEnabled === true) {
-            setEndpopup(!endpopup);
 
-        } else {
-            screenRecord();
-            setPopup(!popup);
-            enableCamera(!camera);
-        }
-    }
 
     const CancelClick = () => {
         setPopup(false);
@@ -46,16 +35,6 @@ const VideoLayout = (props) => {
             unmute()
         }
     };
-
-    const onClickCamera = () =>{
-        if (setCameraEnabled === true) {
-            stopScreenStreaming()
-        } else {
-            enableCamera()
-            enableCamera(!camera
-                );
-        }
-    }
     const setCameraEnable = () => {
         setCamera(!camera);
     };
@@ -388,66 +367,6 @@ const VideoLayout = (props) => {
                             muted
                         ></video>
                         <canvas ref={canvasRef} hidden></canvas>
-                        
-                        {popup ?<div className="popup">
-                            <div className="popup-head">
-                                <p>Live class wants to:</p>
-                                <p
-                                style={{color:"black"}}
-                                onClick={CancelClick}>< CloseOutlined /></p>
-                            </div>
-                            <div className="popup-main">
-                            <p><DesktopOutlined />   Allow Screen Sharing</p>
-                            </div> 
-                            <div className="popup-button">
-                                <input
-                                    value={"fsljfd"}
-                                    hidden
-                                    className="ChatInput"
-                                    size="10"
-                                    height="10px"
-                                    placeholder="Mux Stream Key"
-                                    type="text"
-                                    onChange={(e) =>setStreamKey(e.target.value)
-                                }/>
-                                <button
-                                    className="allow"
-                                    disabled={streamKey}
-                                    onClick={()=>{  startScreenStreaming();
-                                                    setPopup(false);
-                                                    setShareScreen(!ShareScreen)}}
-                                >Allow</button>
-                            </div>  
-                        </div>:""}
-
-                        {endpopup ? <div className="popup">
-                            <div className="popup-head">
-                                <p>Do you want to:</p>
-                                <p
-                                style={{color:"black"}}
-                                onClick={closeEndpopup}>< CloseOutlined /></p>
-                            </div>
-                            <div className="popup-main">
-                                <p><DesktopOutlined />   Stop Screen Sharing</p>
-                            </div> 
-                            <div className="popup-button">
-                                <input
-                                    hidden
-                                    className="ChatInput"
-                                    placeholder="Text Overlay"
-                                    type="text"
-                                    value={"Live Stream"}
-                                    onChange={(e) => e.target.value}
-                                /> 
-                                <button
-                                    className="stop"
-                                    disabled={streamKey}
-                                    onClick={()=>{ stopScreenStreaming();
-                                                    setEndpopup(false);
-                                    
-                                }}>Stop</button>
-                            </div>
-                        </div>:""}
                     </div>
                 </Col>
             </Row>
@@ -517,7 +436,7 @@ const VideoLayout = (props) => {
                                     </>
                                 ))}
 
-                            {/* {screenEnabled &&
+                            {screenEnabled &&
                                 (screenstreaming ? (
                                     <div>
                                         <span style={{ color: "red" }}>
@@ -571,14 +490,14 @@ const VideoLayout = (props) => {
                                             Start Streaming
                                         </button>
                                     </>
-                                ))} */}
+                                ))}
                             <button onClick={setMicEnable}>
                                 {mic ? <MuteAudio /> : <Audio />}
                             </button>
-                            <button onClick={onClickCamera}>
+                            <button onClick={enableCamera}>
                                 {camera ? <StopVideo /> : <Video />}
                             </button>
-                            <button onClick={()=>{onClickOpen();}}>
+                            <button onClick={()=>{screenRecord();}}>
                                 {ShareScreen && screenEnabled ? (
                                     <StopScreenShare />
                                 ) : (
