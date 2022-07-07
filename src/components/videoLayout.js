@@ -134,11 +134,11 @@ const VideoLayout = (props) => {
         requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
 
         setScreenEnabled(true);
-        if (screenEnabled) {
-            startScreenStreaming();
-        }else{
-            stopScreenStreaming();
-        }
+        // if (screenEnabled) {
+        //     startStreaming();
+        // } else {
+        //     stopScreenStreaming();
+        // }
     };
     const updateScreenCanvas = () => {
         if (videoRef.current.ended || videoRef.current.paused) {
@@ -196,109 +196,12 @@ const VideoLayout = (props) => {
 
         requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
         setVoiceEnabled(true);
-        if(voiceEnabled){
-            startVoiceStreaming();
-        }else{
-            stopVoiceStreaming();
-        }
+        // if (voiceEnabled) {
+        //     startStreaming();
+        // } else {
+        //     stopVoiceStreaming();
+        // }
     };
-
-    // voice streaming
-    const startVoiceStreaming = async () => {
-        setVoiceStreaming(true);
-        const protocol = window.location.protocol.replace("http", "ws");
-        const wsUrl = `${protocol}//localhost:5004/rtmp?key=${streamKey}`;
-        wsRef.current = new WebSocket(wsUrl);
-        wsRef.current.addEventListener("open", function open() {
-            setVoiceConnected(true);
-        });
-
-        wsRef.current.addEventListener("close", () => {
-            setVoiceConnected(false);
-            stopVoiceStreaming();
-        });
-        const videoOutputStream = canvasRef.current.captureStream(30); // 30 FPS
-        // Let's do some extra work to get audio to join the party.
-        // https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/
-        const audioStream = new MediaStream();
-        const audioTracks = voiceRef.current.getAudioTracks();
-        audioTracks.forEach(function (track) {
-            audioStream.addTrack(track);
-        });
-
-        const outputStream = new MediaStream();
-        [audioStream, videoOutputStream].forEach(function (s) {
-            s.getTracks().forEach(function (t) {
-                outputStream.addTrack(t);
-            });
-        });
-
-        mediaRecorderRef.current = new MediaRecorder(outputStream, {
-            mimeType: "video/webm",
-            videoBitsPerSecond: 3000000,
-        });
-
-        mediaRecorderRef.current.addEventListener("dataavailable", (e) => {
-            wsRef.current.send(e.data);
-        });
-
-        mediaRecorderRef.current.addEventListener("stop", () => {
-            stopVoiceStreaming();
-            wsRef.current.close();
-        });
-
-        mediaRecorderRef.current.start(1000);
-    };
-
-    //screen streaming
-    const startScreenStreaming = () => {
-        setScreenStreaming(true);
-
-        const protocol = window.location.protocol.replace("http", "ws");
-        const wsUrl = `${protocol}//localhost:5004/rtmp?key=${streamKey}`;
-        wsRef.current = new WebSocket(wsUrl);
-        wsRef.current.addEventListener("open", function open() {
-            setScreenConnected(true);
-        });
-
-        wsRef.current.addEventListener("close", () => {
-            setScreenConnected(false);
-            stopScreenStreaming();
-        });
-
-        const videoOutputStream = canvasRef.current.captureStream(30); // 30 FPS
-        // Let's do some extra work to get audio to join the party.
-        // https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/
-        const audioStream = new MediaStream();
-        const audioTracks = voiceRef.current.getAudioTracks();
-        audioTracks.forEach(function (track) {
-            audioStream.addTrack(track);
-        });
-
-        const outputStream = new MediaStream();
-        [audioStream, videoOutputStream].forEach(function (s) {
-            s.getTracks().forEach(function (t) {
-                outputStream.addTrack(t);
-            });
-        });
-
-        mediaRecorderRef.current = new MediaRecorder(outputStream, {
-            mimeType: "video/webm",
-            videoBitsPerSecond: 3000000,
-        });
-
-        mediaRecorderRef.current.addEventListener("dataavailable", (e) => {
-            wsRef.current.send(e.data);
-        });
-
-        mediaRecorderRef.current.addEventListener("stop", () => {
-            stopScreenStreaming();
-            wsRef.current.close();
-        });
-
-        mediaRecorderRef.current.start(1000);
-    };
-
     //enable camera
     const enableCamera = async () => {
         inputStreamRef.current = await navigator.mediaDevices.getUserMedia(
@@ -316,11 +219,11 @@ const VideoLayout = (props) => {
         requestAnimationRef.current = requestAnimationFrame(updateCanvas);
 
         setCameraEnabled(true);
-        if(cameraEnabled){
-            startStreaming();
-        }else{
-            stopStreaming();
-        }
+        // if (cameraEnabled) {
+        //     startStreaming();
+        // } else {
+        //     stopStreaming();
+        // }
     };
 
     const updateCanvas = () => {
@@ -483,7 +386,7 @@ const VideoLayout = (props) => {
                                             }
                                         />
                                         <button
-                                            hidden
+                                            // hidden
                                             className="btn"
                                             style={{
                                                 backgroundColor: "limegreen",
@@ -519,7 +422,7 @@ const VideoLayout = (props) => {
                                         <button
                                             hidden
                                             className="btn btn-primary m-2  btn-sm"
-                                            onClick={stopScreenStreaming}
+                                            onClick={stopStreaming}
                                         >
                                             Stop Streaming
                                         </button>
@@ -539,7 +442,7 @@ const VideoLayout = (props) => {
                                             }
                                         />
                                         <button
-                                            hidden
+                                            // hidden
                                             className="btn"
                                             style={{
                                                 backgroundColor: "limegreen",
@@ -548,7 +451,7 @@ const VideoLayout = (props) => {
                                                 marginRight: "5rem",
                                             }}
                                             disabled={streamKey}
-                                            onClick={startScreenStreaming}
+                                            onClick={startStreaming}
                                         >
                                             Start Streaming
                                         </button>
