@@ -554,61 +554,7 @@ const VideoLayout = (props) => {
                                         </button>
                                     </>
                                 ))}
-                            {voiceEnabled &&
-                                (voiceStreaming ? (
-                                    <div>
-                                        <span style={{ color: "red" }}>
-                                            {voiceConnected
-                                                ? "Going live"
-                                                : "Disconnected"}
-                                            <br></br>
-                                        </span>
-                                        <input
-                                            hidden
-                                            className="ChatInput"
-                                            placeholder="Text Overlay"
-                                            type="text"
-                                            value={"Live Stream"}
-                                            onChange={(e) => e.target.value}
-                                        />
-                                        <button
-                                            hidden
-                                            className="btn btn-primary m-2  btn-sm"
-                                            onClick={stopVoiceStreaming}
-                                        >
-                                            Stop Streaming
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <>
-                                        <br></br>
-                                        <input
-                                            hidden
-                                            className="ChatInput"
-                                            size="10"
-                                            height="10px"
-                                            placeholder="Mux Stream Key"
-                                            type="text"
-                                            onChange={(e) =>
-                                                setStreamKey(e.target.value)
-                                            }
-                                        />
-                                        <button
-                                            hidden
-                                            className="btn"
-                                            style={{
-                                                backgroundColor: "limegreen",
-                                                color: "white",
-                                                marginTop: "-3rem",
-                                                marginRight: "5rem",
-                                            }}
-                                            disabled={streamKey}
-                                            onClick={startVoiceStreaming}
-                                        >
-                                            Start Streaming
-                                        </button>
-                                    </>
-                                ))}
+
                             <button onClick={setMicEnable}>
                                 {mic ? <Audio /> : <MuteAudio />}
                             </button>
