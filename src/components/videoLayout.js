@@ -134,12 +134,11 @@ const VideoLayout = (props) => {
         requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
 
         setScreenEnabled(true);
-        // if (screenEnabled) {
-        //     startScreenStreaming();
-        // }else{
-        //     stopScreenStreaming();
-        // }
-        startScreenStreaming();
+        if (screenEnabled) {
+            startScreenStreaming();
+        }else{
+            stopScreenStreaming();
+        }
     };
     const updateScreenCanvas = () => {
         if (videoRef.current.ended || videoRef.current.paused) {
@@ -197,12 +196,11 @@ const VideoLayout = (props) => {
 
         requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
         setVoiceEnabled(true);
-        // if(voiceEnabled){
-        //     startVoiceStreaming();
-        // }else{
-        //     stopVoiceStreaming();
-        // }
-        startVoiceStreaming();
+        if(voiceEnabled){
+            startVoiceStreaming();
+        }else{
+            stopVoiceStreaming();
+        }
     };
 
     // voice streaming
@@ -318,12 +316,11 @@ const VideoLayout = (props) => {
         requestAnimationRef.current = requestAnimationFrame(updateCanvas);
 
         setCameraEnabled(true);
-        // if(cameraEnabled){
-        //     startStreaming();
-        // }else{
-        //     stopStreaming();
-        // }
-        startStreaming();
+        if(cameraEnabled){
+            startStreaming();
+        }else{
+            stopStreaming();
+        }
     };
 
     const updateCanvas = () => {
