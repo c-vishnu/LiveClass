@@ -33,9 +33,29 @@ const VideoLayout = (props) => {
             setScreenMic(true);
         }
     };
-    const setCameraEnable = () => {
-        setCamera(!camera);
-    };
+
+    const onClickVideocamera = () => {
+        if(setCameraEnabled === true){
+            StopCamera();
+        }
+        else{
+            enableCamera();
+            setCamera(!camera);
+        }
+    }
+
+    const onClickScreenShare = () =>{
+        if (setScreenEnabled === true) {
+            stopScreenShare();
+        } else {
+            screenRecord();
+            setShareScreen(!ShareScreen);
+        }
+    }
+
+    // const setCameraEnable = () => {
+    //     setCamera(!camera);
+    // };
     const setScreenShare = () => {
         setShareScreen(!ShareScreen);
     };
@@ -314,11 +334,13 @@ const VideoLayout = (props) => {
 const stopScreenShare = () => {
     setScreenVideo(false);
     setScreenMic(false);
+    setCameraEnabled(false);
 }
 //stop camera 
 const StopCamera=() => {
     setCameraVideo(false);
     setCameraMic(false);
+    setScreenEnabled(false);
 }
     useEffect(() => {
         nameRef.current = textOverlay;
@@ -407,12 +429,12 @@ const StopCamera=() => {
                             <button onClick={setMicEnable}>
                                 {mic ? <Audio /> : <MuteAudio />}
                             </button>
-                            <button onClick={enableCamera}>
+                            <button onClick={onClickVideocamera}>
                                 {camera ? <StopVideo /> : <Video />}
                             </button>
                             <button
                                 onClick={() => {
-                                    screenRecord();
+                                    onClickScreenShare();
                                 }}
                             >
                                 {ShareScreen && screenEnabled ? (
