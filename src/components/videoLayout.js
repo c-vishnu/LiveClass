@@ -335,6 +335,11 @@ const stopScreenShare = () => {
     setScreenVideo(false);
     setScreenMic(false);
     setCameraEnabled(false);
+       if (mediaRecorderRef.current.state === "recording") {
+            mediaRecorderRef.current.stop();
+        }
+
+        setScreenStreaming(false);
 }
 //stop camera 
 const StopCamera=() => {
