@@ -6,24 +6,55 @@ import { SendOutlined } from "@ant-design/icons";
 
 function AskQuestion() {
     const [answer, setAnswer] = useState(false);
-    const [reject, setReject] = useState(false);
+    const [AnswerData, setAnswerData] = useState(()=>"");
+    const [answerbubble, setAnswerBubble] = useState(false);
     const [questions, setQuestions] = useState([]);
     const [reply, setReply] = useState();
-    const [rejectReply, setRejectReply] = useState();
-    const [hidden, setHidden] = useState(true);
+    const [repliedQuestions, setRepliedQuestions] = useState([]);
+    const [rejectReplies, setRejectReplies] = useState([]);
+    const [hiddenQuestions, setHiddenQuestions] = useState([]);
     const [colour, setColour] = useState("");
+    const [qandaId, setQandaId] = useState(()=>"");
+    const [reject, setReject] = useState(false);
+    const [hidden, sethidden] = useState(true);
 
     useEffect(() => {
         setInterval(() => {
             axios.get("/qanda").then((res) => {
-                console.log(res);
                 setQuestions(res.data);
             });
         }, 1000);
     }, []);
 
-    const actionButton = () => {
-        setHidden(!hidden);
+    const onSendAnswer = async (e) => {
+        // console.log("qandaId", qandaId);
+        await axios.patch(`/qanda/${qandaId}`,{
+            answer: AnswerData,
+        })
+        .then((res)=>{
+            setAnswerData("");
+            setColour("green");
+        })
+        .catch((error)=>{
+            console.log(error);;
+        })
+    };
+
+    const onReject = async (e) => {
+        await axios.patch(`/qanda/${qandaId}`,{
+          isrejected: reject,
+        })
+        .then((res)=> {
+          setReject(!reject);
+          setColour("red");
+        })
+        .catch((error)=>{
+          console.log(error);
+        })
+      }
+
+    const hideButton = (id) => {
+        setHiddenQuestions([...hiddenQuestions, id]);
     };
 
     return (
@@ -32,38 +63,36 @@ function AskQuestion() {
                 <>
                     <div
                         key={data._id}
-                        className={`que-bubble ${reply === data._id && colour === "green"
-                            ? "answer-action"
-                            : rejectReply === data._id && colour === "red"
-                                ? "reject-action"
-                                : "default"
-                            }`}
-                    >
+                        className={`que-bubble ${data.answer ? "answer-action"
+                            : data.isrejected === true ? "reject-action"
+                            : "default"
+                    }`}>
                         <h6>{data.senderId}</h6>
                         <p style={{ margin: "0px" }}>{data.text}</p>
-                        {hidden ? (
+                        {!data.answer && !data.isrejected === true ? (
                             <div className="que-bubble-button">
                                 <button
-                                    key={data._id}
                                     onClick={() => {
                                         setAnswer(!answer);
                                         setReply(data._id);
+                                        setRepliedQuestions([...repliedQuestions, data._id]);
+                                        setQandaId(data._id);
                                         setColour("green");
-                                        actionButton();
-                                    }}
-                                >
-                                    <h6 style={{ color: "green" }}>Answer</h6>
+                                        hideButton(data._id);
+                                        sethidden(!hidden);
+                                    }}>
+                                    <p style={{ color: "green",
+                                    fontWeight:"bold" }}>Answer</p>
                                 </button>
                                 <button
-                                    key={data._id}
                                     onClick={() => {
-                                        setRejectReply(data._id);
-                                        setReject(!reject);
+                                        setRejectReplies([...rejectReplies, data._id]);
                                         setColour("red");
-                                        actionButton();
-                                    }}
-                                >
-                                    <h6 style={{ color: "red" }}>Reject</h6>
+                                        hideButton(data._id);
+                                        onReject();
+                                }}>
+                                    <p style={{ color: "red",
+                                    fontWeight:"bold" }}>Reject</p>
                                 </button>
                             </div>
                         ) : null}
@@ -71,7 +100,7 @@ function AskQuestion() {
 
                         </div>
                     </div>
-                    {reject && rejectReply === data._id ? (
+                    {rejectReplies.includes(data._id) ? (
                         <p style={{ color: "red" }}></p>
                     ) : null}
                     {answer && reply === data._id ? (
@@ -80,15 +109,32 @@ function AskQuestion() {
                                 <Input
                                     type="text"
                                     placeholder="Type answer"
+                                    value={AnswerData}
+                                    onChange={(event)=>{
+                                        setAnswerData(event.target.value)
+                                    }}
                                 />
                                 <Button
-                                    type="primary"
+                                    type="submit"
                                     size="large"
-                                    icon={<SendOutlined />}
-                                />
+                                    onClick={() => {
+                                        setAnswer(!answer);
+                                        setAnswerBubble(!answerbubble);
+                                        onSendAnswer();
+                                    }}
+                                ><SendOutlined /></Button>
                             </div>
                         </div>
                     ) : null}
+                    {data.answer ? <div className="answer-bubble">
+                        <div className="answer-head">
+                            <p>Admin</p>
+                            <a href="/#">Copy Answer</a>
+                        </div>
+                        <div>
+                            <p>{data.answer}</p>
+                        </div>
+                    </div> : null}
                 </>
             ))}
         </div>

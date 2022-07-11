@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 
 import { Row, Col } from "antd";
+import { DesktopOutlined, CloseOutlined } from "@ant-design/icons";
 import "../App.css";
 import { ReactComponent as Audio } from "../icons/Mic.svg";
 import { ReactComponent as MuteAudio } from "../icons/mute.svg";
@@ -15,37 +16,77 @@ const VideoLayout = (props) => {
     const [mic, setMic] = useState(false);
     const [camera, setCamera] = useState(false);
     const [ShareScreen, setShareScreen] = useState(false);
+    //mic on/off in camera and screen share
+    const [cameraMic, setCameraMic] = useState(false);
+    const [screenMic, setScreenMic] = useState(false);
 
     const setMicEnable = () => {
         setMic(!mic);
         if (mic) {
-            mute()
-        }else{
-            unmute()
+            stopVoiceEnable();
+            setCameraMic(false);
+            setScreenMic(false);
+        } else {
+            EnableVoice();
+            setCameraMic(true);
+            setScreenMic(true);
         }
     };
-    const setCameraEnable = () => {
-        setCamera(!camera);
-    };
+
+    const onClickVideocamera = () => {
+        // if(setCameraEnabled === true){
+        //     StopCamera();
+        // }
+        // else{
+        //     enableCamera();
+        //     setCamera(!camera);
+        // }
+    }
+
+    const onClickScreenShare = () =>{
+        // if (setScreenEnabled === true) {
+        //     stopScreenShare();
+        // } else {
+        //     screenRecord();
+        //     setShareScreen(!ShareScreen);
+        // }
+    }
+
+    // const setCameraEnable = () => {
+    //     setCamera(!camera);
+    // };
     const setScreenShare = () => {
         setShareScreen(!ShareScreen);
     };
     const CAMERA_CONSTRAINTS = {
+        // audio: cameraMic,
         audio: true,
         video: true,
     };
     const SCREEN_CONSTRAINTS = {
+        // audio: screenMic,
         audio: true,
+        video: true,
+    };
+    const SCREEN_CONSTRAINTS_MUTE = {
+        audio: false,
+        video: true,
+    };
+    const CAMERA_CONSTRAINTS_MUTE = {
+        audio: false,
         video: true,
     };
     const [connected, setConnected] = useState(false);
     const [cameraEnabled, setCameraEnabled] = useState(false);
     const [streaming, setStreaming] = useState(false);
-    const [streamKey, setStreamKey] = useState(null);
+    const [streamKey, setStreamKey] = useState("");
     const [textOverlay, setTextOverlay] = useState("Live Stream");
-    const [screenconnected, setsetScreenConnected] = useState(false);
+    const [screenconnected, setScreenConnected] = useState(false);
     const [screenEnabled, setScreenEnabled] = useState(false);
     const [screenstreaming, setScreenStreaming] = useState(false);
+    const [voiceStreaming, setVoiceStreaming] = useState(false);
+    const [voiceConnected, setVoiceConnected] = useState(false);
+    const [voiceEnabled, setVoiceEnabled] = useState(false);
 
     const inputStreamRef = useRef();
     const voiceRef = useRef();
@@ -56,6 +97,7 @@ const VideoLayout = (props) => {
     const requestAnimationRef = useRef();
     const nameRef = useRef();
 
+    //disable camera
     const stopcallStreaming = async () => {
         const stream = inputStreamRef.current;
         const video = videoRef.current;
@@ -83,7 +125,7 @@ const VideoLayout = (props) => {
             cancelAnimationFrame(requestAnimation);
         }
         setScreenStreaming(false);
-        setsetScreenConnected(false);
+        setScreenConnected(false);
         setScreenEnabled(false);
         setStreamKey(null);
         setStreaming(false);
@@ -111,14 +153,16 @@ const VideoLayout = (props) => {
             cancelAnimationFrame(requestAnimation);
         }
     };
+
+    //screen share
     const screenRecord = async () => {
         inputStreamRef.current = await navigator.mediaDevices.getDisplayMedia(
             SCREEN_CONSTRAINTS
         );
         voiceRef.current = await navigator.mediaDevices.getUserMedia({
-            audio: true,
+            audio: screenMic,
+            video: true,
         });
-
         videoRef.current.srcObject = inputStreamRef.current;
 
         await videoRef.current.play();
@@ -130,6 +174,11 @@ const VideoLayout = (props) => {
         requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
 
         setScreenEnabled(true);
+        // if (screenEnabled) {
+        //     startStreaming();
+        // } else {
+        //     stopScreenStreaming();
+        // }
     };
     const updateScreenCanvas = () => {
         if (videoRef.current.ended || videoRef.current.paused) {
@@ -153,62 +202,40 @@ const VideoLayout = (props) => {
         requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
     };
 
-    const stopScreenStreaming = () => {
+    //stop voice stream
+    const stopVoiceStreaming = () => {
         if (mediaRecorderRef.current.state === "recording") {
             mediaRecorderRef.current.stop();
         }
-
-        setScreenStreaming(false);
     };
-
-    const startScreenStreaming = () => {
-        setScreenStreaming(true);
-
-        const protocol = window.location.protocol.replace("http", "ws");
-        const wsUrl = `${protocol}//localhost:5004/rtmp?key=${streamKey}`;
-        wsRef.current = new WebSocket(wsUrl);
-        wsRef.current.addEventListener("open", function open() {
-            setsetScreenConnected(true);
-        });
-
-        wsRef.current.addEventListener("close", () => {
-            setsetScreenConnected(false);
-            stopScreenStreaming();
-        });
-
-        const videoOutputStream = canvasRef.current.captureStream(30); // 30 FPS
-        // Let's do some extra work to get audio to join the party.
-        // https://hacks.mozilla.org/2016/04/record-almost-everything-in-the-browser-with-mediarecorder/
-        const audioStream = new MediaStream();
-        const audioTracks = voiceRef.current.getAudioTracks();
-        audioTracks.forEach(function (track) {
-            audioStream.addTrack(track);
-        });
-
-        const outputStream = new MediaStream();
-        [audioStream, videoOutputStream].forEach(function (s) {
-            s.getTracks().forEach(function (t) {
-                outputStream.addTrack(t);
-            });
-        });
-
-        mediaRecorderRef.current = new MediaRecorder(outputStream, {
-            mimeType: "video/webm",
-            videoBitsPerSecond: 3000000,
-        });
-
-        mediaRecorderRef.current.addEventListener("dataavailable", (e) => {
-            wsRef.current.send(e.data);
-        });
-
-        mediaRecorderRef.current.addEventListener("stop", () => {
-            stopScreenStreaming();
-            wsRef.current.close();
-        });
-
-        mediaRecorderRef.current.start(1000);
+    //stop enable voice
+    const stopVoiceEnable = () => {
+        if (voiceEnabled) {
+            setVoiceEnabled(false);
+        }
     };
+    console.log(cameraMic, screenMic);
+    //enable voice
+    const EnableVoice = async () => {
+        inputStreamRef.current = await navigator.mediaDevices.getUserMedia({
+            audio: true,
+            video: false,
+        });
 
+        videoRef.current.srcObject = inputStreamRef.current;
+
+        await videoRef.current.play();
+        canvasRef.current.height = videoRef.current.clientHeight;
+        canvasRef.current.width = videoRef.current.clientWidth;
+
+        requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
+        if (voiceEnabled) {
+            startStreaming();
+        } else {
+            stopVoiceStreaming();
+        }
+    };
+    //enable camera
     const enableCamera = async () => {
         inputStreamRef.current = await navigator.mediaDevices.getUserMedia(
             CAMERA_CONSTRAINTS
@@ -225,6 +252,11 @@ const VideoLayout = (props) => {
         requestAnimationRef.current = requestAnimationFrame(updateCanvas);
 
         setCameraEnabled(true);
+        // if (cameraEnabled) {
+        //     startStreaming();
+        // } else {
+        //     stopStreaming();
+        // }
     };
 
     const updateCanvas = () => {
@@ -256,7 +288,44 @@ const VideoLayout = (props) => {
 
         setStreaming(false);
     };
+    // screen without mic
+    const screenWithoutMic = async () => {
+        inputStreamRef.current = await navigator.mediaDevices.getDisplayMedia(
+            SCREEN_CONSTRAINTS_MUTE
+        );
+        voiceRef.current = await navigator.mediaDevices.getUserMedia({
+            audio: false,
+        });
+        videoRef.current.srcObject = inputStreamRef.current;
 
+        await videoRef.current.play();
+
+        // We need to set the canvas height/width to match the video element.
+        canvasRef.current.height = videoRef.current.clientHeight;
+        canvasRef.current.width = videoRef.current.clientWidth;
+
+        requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
+
+        setScreenEnabled(true);
+    };
+    //camera without mic
+    const cameraWithoutMic = async () => {
+        inputStreamRef.current = await navigator.mediaDevices.getUserMedia(
+            CAMERA_CONSTRAINTS_MUTE
+        );
+
+        videoRef.current.srcObject = inputStreamRef.current;
+
+        await videoRef.current.play();
+
+        // We need to set the canvas height/width to match the video element.
+        canvasRef.current.height = videoRef.current.clientHeight;
+        canvasRef.current.width = videoRef.current.clientWidth;
+
+        requestAnimationRef.current = requestAnimationFrame(updateCanvas);
+
+        setCameraEnabled(true);
+    };
     const startStreaming = () => {
         setStreaming(true);
 
@@ -305,26 +374,6 @@ const VideoLayout = (props) => {
         mediaRecorderRef.current.start(1000);
     };
 
-    const mute = function() {
-
-        if (inputStreamRef.current.getAudioTracks().length > 0) {
-        
-        inputStreamRef.current.getAudioTracks()[0].enabled = false;
-        
-        }
-        
-        }
-    const unmute = function() {
-            
-            if (inputStreamRef.current.getAudioTracks().length > 0) {
-            
-            inputStreamRef.current.getAudioTracks()[0].enabled = true;
-            
-            }
-            
-            }
-    
-
     useEffect(() => {
         nameRef.current = textOverlay;
     }, [textOverlay]);
@@ -334,6 +383,7 @@ const VideoLayout = (props) => {
             cancelAnimationFrame(requestAnimationRef.current);
         };
     }, []);
+
     return (
         <div className="App">
             <Row>
@@ -367,47 +417,13 @@ const VideoLayout = (props) => {
                         }`}
                     >
                         <div className="foot-btn">
-                            {cameraEnabled &&
-                                (streaming ? (
+                            {cameraEnabled || screenEnabled || voiceEnabled ? (
+                                streaming ||
+                                screenstreaming ||
+                                voiceStreaming ? (
                                     <div>
-                                        <span style={{ color: "red" }}>
-                                            {connected
-                                                ? "Connected"
-                                                : "Disconnected"}
-                                            <br></br>
-                                        </span>
-                                        <input
-                                            hidden
-                                            className="ChatInput"
-                                            placeholder="Text Overlay"
-                                            type="text"
-                                            value={textOverlay}
-                                            onChange={(e) =>
-                                                setTextOverlay(e.target.value)
-                                            }
-                                        />
                                         <button
                                             hidden
-                                            className="btn btn-primary m-2  btn-sm"
-                                            onClick={stopStreaming}
-                                        >
-                                            Stop Streaming
-                                        </button>
-                                    </div>
-                                ) : (
-                                    <>
-                                        <br></br>
-                                        <input
-                                            className="ChatInput"
-                                            placeholder="Mux Stream Key"
-                                            type="text"
-                                            value={"fsgsdf"}
-                                            hidden
-                                            onChange={(e) =>
-                                                setStreamKey(e.target.value)
-                                            }
-                                        />
-                                        <button
                                             className="btn"
                                             style={{
                                                 backgroundColor: "limegreen",
@@ -420,71 +436,40 @@ const VideoLayout = (props) => {
                                         >
                                             Start Streaming
                                         </button>
-                                    </>
-                                ))}
-                            {screenEnabled &&
-                                (screenstreaming ? (
-                                    <div>
-                                        <span style={{ color: "red" }}>
-                                            {screenconnected
-                                                ? "Connected"
-                                                : "Disconnected"}
-                                            <br></br>
-                                        </span>
-                                        <input
-                                            hidden
-                                            className="ChatInput"
-                                            placeholder="Text Overlay"
-                                            type="text"
-                                            value={"Live Stream"}
-                                            onChange={(e) => e.target.value}
-                                        />
-                                        <button
-                                            hidden
-                                            className="btn btn-primary m-2  btn-sm"
-                                            onClick={stopScreenStreaming}
-                                        >
-                                            Stop Streaming
-                                        </button>
                                     </div>
                                 ) : (
-                                    <>
-                                        <br></br>
-                                        <input
-                                            value={"fsljfd"}
-                                            hidden
-                                            className="ChatInput"
-                                            size="10"
-                                            height="10px"
-                                            placeholder="Mux Stream Key"
-                                            type="text"
-                                            onChange={(e) =>
-                                                setStreamKey(e.target.value)
-                                            }
-                                        />
+                                    <div>
                                         <button
+                                            // hidden
                                             className="btn"
                                             style={{
                                                 backgroundColor: "limegreen",
                                                 color: "white",
-                                                marginTop: "-3rem",
-                                                marginRight: "5rem",
+                                                marginBottom: "-6rem",
+                                                marginTop: "-1rem",
+                                                marginRight: "45rem",
                                             }}
                                             disabled={streamKey}
-                                            onClick={startScreenStreaming}
+                                            onClick={startStreaming}
                                         >
                                             Start Streaming
                                         </button>
-                                    </>
-                                ))}
+                                    </div>
+                                )
+                            ) : null}
+
                             <button onClick={setMicEnable}>
-                                {mic ? <MuteAudio /> : <Audio />}
+                                {mic ? <Audio /> : <MuteAudio />}
                             </button>
-                            <button onClick={enableCamera}>
+                            <button onClick={onClickVideocamera}>
                                 {camera ? <StopVideo /> : <Video />}
                             </button>
-                            <button onClick={screenRecord}>
-                                {ShareScreen ? (
+                            <button
+                                onClick={() => {
+                                    onClickScreenShare();
+                                }}
+                            >
+                                {ShareScreen && screenEnabled ? (
                                     <StopScreenShare />
                                 ) : (
                                     <ScreenShare />
