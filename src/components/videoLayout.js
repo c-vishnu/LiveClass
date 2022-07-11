@@ -32,9 +32,29 @@ const VideoLayout = (props) => {
             setScreenMic(true);
         }
     };
-    const setCameraEnable = () => {
-        setCamera(!camera);
-    };
+
+    const onClickVideocamera = () => {
+        // if(setCameraEnabled === true){
+        //     StopCamera();
+        // }
+        // else{
+        //     enableCamera();
+        //     setCamera(!camera);
+        // }
+    }
+
+    const onClickScreenShare = () =>{
+        // if (setScreenEnabled === true) {
+        //     stopScreenShare();
+        // } else {
+        //     screenRecord();
+        //     setShareScreen(!ShareScreen);
+        // }
+    }
+
+    // const setCameraEnable = () => {
+    //     setCamera(!camera);
+    // };
     const setScreenShare = () => {
         setShareScreen(!ShareScreen);
     };
@@ -441,12 +461,12 @@ const VideoLayout = (props) => {
                             <button onClick={setMicEnable}>
                                 {mic ? <Audio /> : <MuteAudio />}
                             </button>
-                            <button onClick={enableCamera}>
+                            <button onClick={onClickVideocamera}>
                                 {camera ? <StopVideo /> : <Video />}
                             </button>
                             <button
                                 onClick={() => {
-                                    screenRecord();
+                                    onClickScreenShare();
                                 }}
                             >
                                 {ShareScreen && screenEnabled ? (
