@@ -16,13 +16,21 @@ const VideoLayout = (props) => {
     const [mic, setMic] = useState(false);
     const [camera, setCamera] = useState(false);
     const [ShareScreen, setShareScreen] = useState(false);
-
+    //mic on/off in camera and screen share
+    const [cameraMic, setCameraMic] = useState(false);
+    const [screenMic, setScreenMic] = useState(false);
+    const [cameraVideo, setCameraVideo] = useState(true);
+    const [screenVideo, setScreenVideo] = useState(true);
     const setMicEnable = () => {
         setMic(!mic);
         if (mic) {
             stopVoiceEnable();
+            setCameraMic(false);
+            setScreenMic(false);
         } else {
             EnableVoice();
+            setCameraMic(true);
+            setScreenMic(true);
         }
     };
     const setCameraEnable = () => {
@@ -32,12 +40,14 @@ const VideoLayout = (props) => {
         setShareScreen(!ShareScreen);
     };
     const CAMERA_CONSTRAINTS = {
-        audio: true,
-        video: true,
+        // audio: cameraMic,
+        audio:cameraMic,
+        video: cameraVideo
     };
     const SCREEN_CONSTRAINTS = {
-        audio: true,
-        video: true,
+        // audio: screenMic,
+      audio:screenMic,
+        video: screenVideo
     };
     const [connected, setConnected] = useState(false);
     const [cameraEnabled, setCameraEnabled] = useState(false);
@@ -50,6 +60,7 @@ const VideoLayout = (props) => {
     const [voiceStreaming, setVoiceStreaming] = useState(false);
     const [voiceConnected, setVoiceConnected] = useState(false);
     const [voiceEnabled, setVoiceEnabled] = useState(false);
+
     const inputStreamRef = useRef();
     const voiceRef = useRef();
     const videoRef = useRef();
@@ -115,14 +126,15 @@ const VideoLayout = (props) => {
             cancelAnimationFrame(requestAnimation);
         }
     };
+    //screen share
     const screenRecord = async () => {
         inputStreamRef.current = await navigator.mediaDevices.getDisplayMedia(
             SCREEN_CONSTRAINTS
         );
         voiceRef.current = await navigator.mediaDevices.getUserMedia({
-            audio: true,
+            audio: screenMic,
+            video:true 
         });
-
         videoRef.current.srcObject = inputStreamRef.current;
 
         await videoRef.current.play();
@@ -162,13 +174,7 @@ const VideoLayout = (props) => {
         requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
     };
 
-    const stopScreenStreaming = () => {
-        if (mediaRecorderRef.current.state === "recording") {
-            mediaRecorderRef.current.stop();
-        }
 
-        setScreenStreaming(false);
-    };
     //stop voice stream
     const stopVoiceStreaming = () => {
         if (mediaRecorderRef.current.state === "recording") {
@@ -181,20 +187,21 @@ const VideoLayout = (props) => {
             setVoiceEnabled(false);
         }
     };
+    console.log(cameraMic, screenMic);
     //enable voice
     const EnableVoice = async () => {
-        inputStreamRef.current = await navigator.mediaDevices.getUserMedia({
-            audio: true,
-            video: false,
-        });
+        // inputStreamRef.current = await navigator.mediaDevices.getUserMedia({
+        //     audio: true,
+        //     video: false,
+        // });
 
-        videoRef.current.srcObject = inputStreamRef.current;
+        // videoRef.current.srcObject = inputStreamRef.current;
 
-        await videoRef.current.play();
-        canvasRef.current.height = videoRef.current.clientHeight;
-        canvasRef.current.width = videoRef.current.clientWidth;
+        // await videoRef.current.play();
+        // canvasRef.current.height = videoRef.current.clientHeight;
+        // canvasRef.current.width = videoRef.current.clientWidth;
 
-        requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
+        // requestAnimationRef.current = requestAnimationFrame(updateScreenCanvas);
         setVoiceEnabled(true);
         // if (voiceEnabled) {
         //     startStreaming();
@@ -303,7 +310,16 @@ const VideoLayout = (props) => {
 
         mediaRecorderRef.current.start(1000);
     };
-
+//stop screen share 
+const stopScreenShare = () => {
+    setScreenVideo(false);
+    setScreenMic(false);
+}
+//stop camera 
+const StopCamera=() => {
+    setCameraVideo(false);
+    setCameraMic(false);
+}
     useEffect(() => {
         nameRef.current = textOverlay;
     }, [textOverlay]);
@@ -313,6 +329,7 @@ const VideoLayout = (props) => {
             cancelAnimationFrame(requestAnimationRef.current);
         };
     }, []);
+    
     return (
         <div className="App">
             <Row>
