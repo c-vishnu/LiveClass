@@ -338,6 +338,7 @@ const stopScreenShare = () => {
 }
 //stop camera 
 const StopCamera=() => {
+    
     setCameraVideo(false);
     setCameraMic(false);
     setScreenEnabled(false);
@@ -430,7 +431,7 @@ const StopCamera=() => {
                                 {mic ? <Audio /> : <MuteAudio />}
                             </button>
                             <button onClick={onClickVideocamera}>
-                                {camera ? <StopVideo /> : <Video />}
+                                {camera ? <Video /> : <StopVideo />}
                             </button>
                             <button
                                 onClick={() => {
@@ -438,9 +439,9 @@ const StopCamera=() => {
                                 }}
                             >
                                 {ShareScreen && screenEnabled ? (
-                                    <StopScreenShare />
-                                ) : (
                                     <ScreenShare />
+                                ) : (
+                                    <StopScreenShare />
                                 )}
                             </button>
                             <button>
