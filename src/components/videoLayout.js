@@ -24,32 +24,26 @@ const VideoLayout = (props) => {
         setMic(!mic);
         if (mic) {
             stopVoiceEnable();
-            setCameraMic(false);
-            setScreenMic(false);
         } else {
             EnableVoice();
-            setCameraMic(true);
-            setScreenMic(true);
         }
     };
 
     const onClickVideocamera = () => {
-        // if(setCameraEnabled === true){
-        //     StopCamera();
-        // }
-        // else{
-        //     enableCamera();
-        //     setCamera(!camera);
-        // }
+        if(setCameraEnabled === true){
+        }
+        else{
+            enableCamera();
+            setCamera(!camera);
+        }
     }
 
     const onClickScreenShare = () =>{
-        // if (setScreenEnabled === true) {
-        //     stopScreenShare();
-        // } else {
-        //     screenRecord();
-        //     setShareScreen(!ShareScreen);
-        // }
+        if (setScreenEnabled === true) {
+        } else {
+            screenRecord();
+            setShareScreen(!ShareScreen);
+        }
     }
 
     // const setCameraEnable = () => {
