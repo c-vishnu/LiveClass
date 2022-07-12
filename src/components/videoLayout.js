@@ -24,32 +24,26 @@ const VideoLayout = (props) => {
         setMic(!mic);
         if (mic) {
             stopVoiceEnable();
-            setCameraMic(false);
-            setScreenMic(false);
         } else {
             EnableVoice();
-            setCameraMic(true);
-            setScreenMic(true);
         }
     };
 
     const onClickVideocamera = () => {
-        // if(setCameraEnabled === true){
-        //     StopCamera();
-        // }
-        // else{
-        //     enableCamera();
-        //     setCamera(!camera);
-        // }
+        if(setCameraEnabled === true){
+        }
+        else{
+            enableCamera();
+            setCamera(!camera);
+        }
     }
 
     const onClickScreenShare = () =>{
-        // if (setScreenEnabled === true) {
-        //     stopScreenShare();
-        // } else {
-        //     screenRecord();
-        //     setShareScreen(!ShareScreen);
-        // }
+        if (setScreenEnabled === true) {
+        } else {
+            screenRecord();
+            setShareScreen(!ShareScreen);
+        }
     }
 
     // const setCameraEnable = () => {
@@ -221,7 +215,7 @@ const VideoLayout = (props) => {
             audio: true,
             video: false,
         });
-
+        setVoiceEnabled(true);
         videoRef.current.srcObject = inputStreamRef.current;
 
         await videoRef.current.play();
@@ -458,15 +452,16 @@ const VideoLayout = (props) => {
                                 )
                             ) : null}
 
-                            <button onClick={setMicEnable}>
+                            <button onClick={setMicEnable }>
                                 {mic ? <Audio /> : <MuteAudio />}
                             </button>
-                            <button onClick={onClickVideocamera}>
+                            <button onClick={enableCamera}>
                                 {camera ? <StopVideo /> : <Video />}
                             </button>
                             <button
                                 onClick={() => {
-                                    onClickScreenShare();
+                                    // onClickScreenShare();
+                                    screenRecord();
                                 }}
                             >
                                 {ShareScreen && screenEnabled ? (
