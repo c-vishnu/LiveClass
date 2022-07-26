@@ -412,3 +412,7 @@
   background-color: rgb(197, 8, 8);
   color: white ;
 }
+.chat-option Button{
+  border: none;
+  padding: 0px;
+}
